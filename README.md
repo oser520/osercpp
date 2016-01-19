@@ -1,2 +1,2 @@
-# osercpp
+# ospp
 Practice with c++.
