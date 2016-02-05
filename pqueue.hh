@@ -4,6 +4,6 @@
  * @date 2016-01-15
  */
 
-namespace osercpp {
+namespace ospp {
   // TODO: Create interface for priority queue.
-} // namespace osercpp
+} // namespace ospp
