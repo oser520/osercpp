@@ -38,8 +38,33 @@ public:
   using const_iterator = const PriorityQueueIter<value_type>;
   using difference_type = std::iterator_traits<iterator>::difference_type;
   using size_type = size_t;
+  using compare_type = Compare;
   // TODO: create alias for reverse iterator
 private:
+  /**
+   * Pointer to the array of values in the priority queue.
+   */
+  pointer mValues;
+
+  /**
+   * The allocator.
+   */
+  allocator_type mAlloc;
+
+  /**
+   * The comparator.
+   */
+  compare_type mCompare;
+
+  /**
+   * The maximum number of elements that may held.
+   */
+  int mSize;
+
+  /**
+   * The number of items held by the priority queue.
+   */
+  int mItems;
 };
 
 } // namespace ospp
