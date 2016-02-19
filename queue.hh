@@ -7,6 +7,7 @@
 #define _QUEUE_H
 
 #include <memory>
+#include <functional>
 
 namespace ospp {
 
@@ -16,7 +17,12 @@ template<typename T> class PriorityQueueIter;
 /**
  * PriorityQueue.
  */
-template<typename T, typename Alloc = std::allocator<T>>
+template
+<
+  typename T,
+  typename Compare = std::less<T>,
+  typename Alloc = std::allocator<T>
+>
 class PriorityQueue
 {
   friend template<typename T> class PriorityQueueIter;
