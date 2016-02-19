@@ -3,9 +3,10 @@
  * @author Omar A Serrano
  * @date 2016-01-15
  */
-
 #ifndef _QUEUE_H
 #define _QUEUE_H
+
+#include <memory>
 
 namespace ospp {
 
