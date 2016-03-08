@@ -44,6 +44,16 @@ struct is_bidirectional_iter {
   using value = std::integral_constant<bool, true_or_false::value>;
 };
 
+/**
+ * Determines at compile time if an iterator carries the random_iterator_tag.
+ */
+template<typename Iter>
+struct is_random_iter {
+  using category = std::iterator_traits<Iter>::iterator_category;
+  using true_or_false = std::is_same<category, std::random_access_iterator_tag>;
+  using value = std::integral_constant<bool, true_or_false::value>;
+};
+
 } // namespace ospp
 
 #endif /* _ITER_TRAITS_H */
