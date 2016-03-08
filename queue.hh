@@ -139,6 +139,105 @@ private:
   friend template<typename T> class PriorityQueueIter;
 };
 
+// ctor
+template<typename T, typename Compare, typename Alloc>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue(const size_t size)
+  : mPtr(nullptr),
+    mAlloc(),
+    mCompare(),
+    mSize(size),
+    mItems()
+{
+  assert(mSize > 0);
+  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+}
+
+// ctor
+template<typename T, typename Compare, typename Alloc>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue(const allocator_type& alloc)
+  : mPtr(nullptr),
+    mAlloc(alloc),
+    mCompare(),
+    mSize(DEFAULT_SIZE),
+    mItems()
+{
+  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+}
+
+// ctor
+template<typename T, typename Compare, typename  Alloc>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue(const compare_type& comp)
+  : mPtr(nullptr),
+    mAlloc(),
+    mCompare(comp),
+    mSize(DEFAULT_SIZE),
+    mItems()
+{
+  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+}
+
+// ctor
+template<typename T, typename Compare, typename Alloc>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue
+  (const size_t size,
+   const compare_type& comp,
+   const allocator_type& alloc)
+  : mPtr(nullptr),
+    mAlloc(alloc),
+    mCompare(comp),
+    mSize(size),
+    mItems()
+{
+  assert(size > 0);
+  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+}
+
+// ctor
+template<typename T, typename Compare, typename Alloc>
+  template<typename InputIterator, typename>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue(InputIterator first, InputIterator last)
+  : mPtr(nullptr),
+    mAlloc(),
+    mCompare(),
+    mSize(DEFAULT_SIZE),
+    mItems()
+{
+  mPtr = mAlloc.allocate(mSize);
+
+  while (first != last)
+  {
+    if (mItems == mSize)
+    {
+      // increase the size
+      mSize <<= SIZE_MULT;
+      auto tmp = mAlloc.allocate(mSize);
+
+      // copy items
+      for (int i = 0; i < mItems; ++i)
+        mAlloc.construct(tmp+i, mPtr[i]);
+
+      // destroy copies of items
+      for (int i = 0; i < mItems; ++i)
+        mAlloc.destroy(mPtr+i);
+
+      mAlloc.deallocate(mPtr);
+      mPtr = tmp;
+    }
+
+    mAlloc.construct(mPtr+mItems, *first);
+    ++mItems;
+    ++first;
+  }
+
+  // TODO: heapify array
+  heapify();
+}
+
 } // namespace ospp
 
 #endif /* _QUEUE_H */
