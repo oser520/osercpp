@@ -18,7 +18,8 @@ namespace ospp {
  * Determines at compile time if an iterator carries the input_iterator_tag.
  */
 template<typename Iter>
-struct is_input_iter {
+struct is_input_iter
+{
   using category = std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::input_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
@@ -28,7 +29,8 @@ struct is_input_iter {
  * Determines at compile time if an iterator carries the forward_iterator_tag.
  */
 template<typename Iter>
-struct is_forward_iter {
+struct is_forward_iter
+{
   using category = std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::forward_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
@@ -38,7 +40,8 @@ struct is_forward_iter {
  * Determines at compile time if an iterator carries the bidirectional_iterator_tag.
  */
 template<typename Iter>
-struct is_bidirectional_iter {
+struct is_bidirectional_iter
+{
   using category = std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::bidirectional_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
@@ -48,7 +51,8 @@ struct is_bidirectional_iter {
  * Determines at compile time if an iterator carries the random_iterator_tag.
  */
 template<typename Iter>
-struct is_random_iter {
+struct is_random_iter
+{
   using category = std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::random_access_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
@@ -68,4 +72,3 @@ struct is_output_iter
 } // namespace ospp
 
 #endif /* _ITER_TRAITS_H */
-
