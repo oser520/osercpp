@@ -126,12 +126,12 @@ private:
   /**
    * The maximum number of elements that may be held.
    */
-  int mSize;
+  size_t mSize;
 
   /**
    * The number of items held by the priority queue.
    */
-  int mItems;
+  size_t mItems;
 
   /**
    * friends
@@ -220,11 +220,11 @@ PriorityQueue(InputIterator first, InputIterator last)
       auto tmp = mAlloc.allocate(mSize);
 
       // copy items
-      for (int i = 0; i < mItems; ++i)
+      for (size_t i = 0; i < mItems; ++i)
         mAlloc.construct(tmp+i, mPtr[i]);
 
       // destroy copies of items
-      for (int i = 0; i < mItems; ++i)
+      for (size_t i = 0; i < mItems; ++i)
         mAlloc.destroy(mPtr+i);
 
       mAlloc.deallocate(mPtr);
