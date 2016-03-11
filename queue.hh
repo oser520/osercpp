@@ -131,7 +131,7 @@ private:
   /**
    * The number of items held by the priority queue.
    */
-  size_t mItems;
+  size_t mCount;
 
   /**
    * friends
@@ -149,7 +149,7 @@ PriorityQueue(const size_t size)
     mAlloc(),
     mCompare(),
     mSize(size),
-    mItems()
+    mCount()
 {
   assert(mSize > 0);
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
@@ -163,7 +163,7 @@ PriorityQueue(const allocator_type& alloc)
     mAlloc(alloc),
     mCompare(),
     mSize(DEFAULT_SIZE),
-    mItems()
+    mCount()
 {
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
 }
@@ -176,7 +176,7 @@ PriorityQueue(const compare_type& comp)
     mAlloc(),
     mCompare(comp),
     mSize(DEFAULT_SIZE),
-    mItems()
+    mCount()
 {
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
 }
@@ -192,7 +192,7 @@ PriorityQueue
     mAlloc(alloc),
     mCompare(comp),
     mSize(size),
-    mItems()
+    mCount()
 {
   assert(size > 0);
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
@@ -207,32 +207,32 @@ PriorityQueue(InputIterator first, InputIterator last)
     mAlloc(),
     mCompare(),
     mSize(DEFAULT_SIZE),
-    mItems()
+    mCount()
 {
   mPtr = mAlloc.allocate(mSize);
 
   while (first != last)
   {
-    if (mItems == mSize)
+    if (mCount == mSize)
     {
       // increase the size
       mSize <<= SIZE_MULT;
       auto tmp = mAlloc.allocate(mSize);
 
       // copy items
-      for (size_t i = 0; i < mItems; ++i)
+      for (size_t i = 0; i < mCount; ++i)
         mAlloc.construct(tmp+i, mPtr[i]);
 
       // destroy copies of items
-      for (size_t i = 0; i < mItems; ++i)
+      for (size_t i = 0; i < mCount; ++i)
         mAlloc.destroy(mPtr+i);
 
       mAlloc.deallocate(mPtr);
       mPtr = tmp;
     }
 
-    mAlloc.construct(mPtr+mItems, *first);
-    ++mItems;
+    mAlloc.construct(mPtr+mCount, *first);
+    ++mCount;
     ++first;
   }
 
