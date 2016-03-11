@@ -12,6 +12,8 @@
 #include <iterator>
 #include <type_traits>
 
+#include "iter_traits.hh"
+
 namespace ospp {
 
 // forward declaration
