@@ -16,8 +16,14 @@
 
 namespace ospp {
 
-// forward declaration
+/**
+ * forward declaration
+ */
 template<typename T> class PriorityQueueIter;
+
+////////////////////////////////////////////////////////////////////////////////
+// Class Declaration
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * PriorityQueue.
@@ -99,15 +105,30 @@ public:
   void push(value_type&& value);
   template<typename... Args>
   void emplace(Args&&... args);
-  void pop();
+  void pop() noexcept(std::is_nothrow_destructible<T>::value);
 
   /**
    * object functionality
    */
   std::string toString() const;
+  template<typename Hash = std::hash<T>>
   size_type hashCode() const noexcept;
 
 private:
+
+  /**
+   * indexing functions
+   */
+  int parent(int index) const noexcept;
+  int leftChild(int index) const noexcept;
+  int rightChild(int index) const noexcept;
+
+  /**
+   * movement functions
+   */
+  void bubbleDown(int index) noexcept;
+  void bubbleUp(int index) noexcept;
+
   /**
    * Pointer to the array of values in the priority queue.
    */
@@ -126,12 +147,12 @@ private:
   /**
    * The maximum number of elements that may be held.
    */
-  size_t mSize;
+  int mSize;
 
   /**
    * The number of items held by the priority queue.
    */
-  size_t mCount;
+  int mCount;
 
   /**
    * friends
@@ -141,7 +162,14 @@ private:
   friend template<typename T> class PriorityQueueIter;
 };
 
-// ctor
+////////////////////////////////////////////////////////////////////////////////
+// Class Definition
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief Constructor with one parameter.
+ * @param size The starting size of the heap.
+ */
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
 PriorityQueue(const size_t size)
@@ -155,7 +183,10 @@ PriorityQueue(const size_t size)
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
 }
 
-// ctor
+/**
+ * @brief Constructor with one parameter.
+ * @param alloc The allocator for the heap.
+ */
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
 PriorityQueue(const allocator_type& alloc)
@@ -168,7 +199,10 @@ PriorityQueue(const allocator_type& alloc)
   mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
 }
 
-// ctor
+/**
+ * @brief Constructor with one parameter.
+ * @param comp The object used to compare items.
+ */
 template<typename T, typename Compare, typename  Alloc>
 PriorityQueue<T, Compare, Alloc>::
 PriorityQueue(const compare_type& comp)
@@ -238,6 +272,144 @@ PriorityQueue(InputIterator first, InputIterator last)
 
   // TODO: heapify array
   heapify();
+}
+
+template<typename T, typename Compare, typename Alloc>
+inline bool PriorityQueue<T, Compare, Alloc>::
+empty() const noexcept
+{
+  return mCount == 0;
+}
+
+template<typename T, typename Compare, typename Alloc>
+inline size_t PriorityQueue<T, Compare, Alloc>::
+size() const noexcept
+{
+  return static_cast<size_t>(mSize);
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline T PriorityQueue<T, Compare, Alloc>::
+top() const noexcept
+{
+  return mPtr[0];
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+push(const value_type& value)
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+push(value_type&& value)
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+  template<typename Args...>
+inline void PriorityQueue<T, Compare, Alloc>::
+emplace(Args&&... args)
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+pop() noexcept(std::is_nothrow_destructible<T>::value)
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+pop() noexcept(std::is_nothrow_destructible<T>::value)
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline std::string PriorityQueue<T, Compare, Alloc>::
+toString() const
+{
+  return std::string();
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+  template<typename Hash>>
+inline size_t PriorityQueue<T, Compare, Alloc>::
+hashCode(const Hash& hsh)) const noexcept
+{
+  return 0;
+}
+
+/**
+ * @brief Get parent of the node at the given index.
+ * @param index The index of the child node.
+ * @return The index of the left child.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+inline int PriorityQueue<T, Compare, Alloc>::
+parent(int index) const noexcept
+{
+  assert(index >= 0 && index < mCount);
+  return (index - 1) >> 2;
+}
+
+/**
+ * @brief Get the left child of the node at the given index.
+ * @param index The index of the parent node.
+ * @return The index of the left child.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+inline int PriorityQueue<T, Compare, Alloc>::
+leftChild(int index) const noexcept
+{
+  assert(index >= 0 && index < mCount);
+  return (index << 2) + 1;
+}
+
+/**
+ * @brief Get the right child of the node at the given index.
+ * @param index The index of the parent node.
+ * @return The index of the right child.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+inline int PriorityQueue<T, Compare, Alloc>::
+rightChild(int index) const noexcept
+{
+  assert(index >= 0 && index < mCount);
+  return (index << 2) + 2;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+bubbleDown(int index) const noexcept
+{
+  return;
+}
+
+// TODO: implement
+template<typename T, typename Compare, typename Alloc>
+inline void PriorityQueue<T, Compare, Alloc>::
+bubbleUp(int index) const noexcept
+{
+  return;
 }
 
 } // namespace ospp
