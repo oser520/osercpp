@@ -129,6 +129,7 @@ private:
   void bubbleDown(int index) noexcept;
   void bubbleUp(int index) noexcept;
 
+
   /**
    * Pointer to the array of values in the priority queue.
    */
@@ -179,8 +180,7 @@ PriorityQueue(const size_t size)
     mSize(size),
     mCount()
 {
-  assert(mSize > 0);
-  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+  mPtr = mAlloc.allocate(mSize);
 }
 
 /**
@@ -196,7 +196,7 @@ PriorityQueue(const allocator_type& alloc)
     mSize(DEFAULT_SIZE),
     mCount()
 {
-  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+  mPtr = mAlloc.allocate(mSize);
 }
 
 /**
@@ -212,7 +212,7 @@ PriorityQueue(const compare_type& comp)
     mSize(DEFAULT_SIZE),
     mCount()
 {
-  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+  mPtr = mAlloc.allocate(mSize);
 }
 
 // ctor
@@ -228,8 +228,7 @@ PriorityQueue
     mSize(size),
     mCount()
 {
-  assert(size > 0);
-  mPtr = mAlloc.allocate(static_cast<size_t>(mSize));
+  mPtr = mAlloc.allocate(mSize);
 }
 
 // ctor
@@ -356,6 +355,7 @@ hashCode(const Hash& hsh)) const noexcept
 
 /**
  * @brief Get parent of the node at the given index.
+ * @detail If negative, then index refers to root node.
  * @param index The index of the child node.
  * @return The index of the left child.
  * @throw Never throws.
@@ -365,11 +365,13 @@ inline int PriorityQueue<T, Compare, Alloc>::
 parent(int index) const noexcept
 {
   assert(index >= 0 && index < mCount);
-  return (index - 1) >> 2;
+  return (index - 1) >> 1;
 }
 
 /**
  * @brief Get the left child of the node at the given index.
+ * @detail If greater then <em>mSize</em>, then index refers to left most child
+ *  node.
  * @param index The index of the parent node.
  * @return The index of the left child.
  * @throw Never throws.
@@ -379,11 +381,13 @@ inline int PriorityQueue<T, Compare, Alloc>::
 leftChild(int index) const noexcept
 {
   assert(index >= 0 && index < mCount);
-  return (index << 2) + 1;
+  return (index << 1) + 1;
 }
 
 /**
  * @brief Get the right child of the node at the given index.
+ * @detail If greater then <em>mSize</em>, then index refers to right most child
+ *  node.
  * @param index The index of the parent node.
  * @return The index of the right child.
  * @throw Never throws.
@@ -393,7 +397,7 @@ inline int PriorityQueue<T, Compare, Alloc>::
 rightChild(int index) const noexcept
 {
   assert(index >= 0 && index < mCount);
-  return (index << 2) + 2;
+  return (index << 1) + 2;
 }
 
 // TODO: implement
@@ -401,15 +405,46 @@ template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 bubbleDown(int index) const noexcept
 {
+  assert(index >= 0 && index < mCount);
+
+  auto val = mPtr[index];
+  auto i = index;
+
+  while (i < mCount) {
+    i = leftChild(i);
+    if (i >= mCount)
+      break;
+    if (mCompare(mPtr[i], val)) {
+      mPtr[index] = mPtr[i];
+      index = i;
+      continue;
+    }
+    // TODO: compare againts right child
+  }
   return;
 }
 
-// TODO: implement
+/**
+ * @brief Bubble up a node up the heap to its right place.
+ * @param index The index of the node.
+ * @throw Never throws.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 bubbleUp(int index) const noexcept
 {
-  return;
+  assert(index >= 0 && index < mCount);
+
+  auto val = mPtr[index];
+  auto i = parent(index);
+
+  while (i >= 0 && mComp(mPtr[i], val) {
+    mPtr[index] = mPtr[i];
+    index = i;
+    i = parent(index);
+  }  
+
+  mPtr[index] = val;
 }
 
 } // namespace ospp
