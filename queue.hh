@@ -348,7 +348,7 @@ toString() const
 template<typename T, typename Compare, typename Alloc>
   template<typename Hash>>
 inline size_t PriorityQueue<T, Compare, Alloc>::
-hashCode(const Hash& hsh)) const noexcept
+hashCode(const Hash& hsh) const noexcept
 {
   return 0;
 }
@@ -400,7 +400,11 @@ rightChild(int index) const noexcept
   return (index << 1) + 2;
 }
 
-// TODO: implement
+/**
+ * @brief Bubble down a node to its right place.
+ * @param index The index of the current node.
+ * @throw Never throws.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 bubbleDown(int index) const noexcept
@@ -408,20 +412,37 @@ bubbleDown(int index) const noexcept
   assert(index >= 0 && index < mCount);
 
   auto val = mPtr[index];
-  auto i = index;
 
-  while (i < mCount) {
-    i = leftChild(i);
+  while (true)
+  {
+    // compare with left child
+    auto i = leftChild(index);
+
     if (i >= mCount)
       break;
-    if (mCompare(mPtr[i], val)) {
+
+    if (mCompare(mPtr[i], val))
+    {
       mPtr[index] = mPtr[i];
       index = i;
       continue;
     }
-    // TODO: compare againts right child
+
+    // compare with right child
+    i = rightChild(index);
+
+    if (i >= mCount)
+      break;
+
+    if (mCompare(mPtr[i], val))
+    {
+      mPtr[index] = mPtr[i];
+      index = i;
+      continue;
+    }
   }
-  return;
+
+  mPtr[index] = val;
 }
 
 /**
@@ -438,7 +459,8 @@ bubbleUp(int index) const noexcept
   auto val = mPtr[index];
   auto i = parent(index);
 
-  while (i >= 0 && mComp(mPtr[i], val) {
+  while (i >= 0 && mComp(mPtr[i], val)
+  {
     mPtr[index] = mPtr[i];
     index = i;
     i = parent(index);
