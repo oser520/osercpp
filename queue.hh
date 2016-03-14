@@ -40,7 +40,7 @@ class PriorityQueue
    * Default size for priority queue and size multiplier when items don't fit
    * in priority queue
    */
-  enum { DEFAULT_SIZE = 8, SIZE_MULT = 2 };
+  enum { DEFAULT_SIZE = 8, SIZE_MULT = 1 };
 
 public:
   /**
@@ -246,33 +246,15 @@ PriorityQueue(InputIterator first, InputIterator last)
 
   while (first != last)
   {
-    if (mCount == mSize)
-    {
-      // increase the size
-      mSize <<= SIZE_MULT;
-      auto tmp = mAlloc.allocate(mSize);
-
-      // copy items
-      for (size_t i = 0; i < mCount; ++i)
-        mAlloc.construct(tmp+i, mPtr[i]);
-
-      // destroy copies of items
-      for (size_t i = 0; i < mCount; ++i)
-        mAlloc.destroy(mPtr+i);
-
-      mAlloc.deallocate(mPtr);
-      mPtr = tmp;
-    }
-
-    mAlloc.construct(mPtr+mCount, *first);
-    ++mCount;
+    emplace(*first);
     ++first;
   }
-
-  // TODO: heapify array
-  heapify();
 }
 
+/**
+ * @brief Determine if the queue is empty.
+ * @return True if the queue is empty, false otherwise.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline bool PriorityQueue<T, Compare, Alloc>::
 empty() const noexcept
@@ -280,14 +262,21 @@ empty() const noexcept
   return mCount == 0;
 }
 
+/**
+ * @brief Get the size of the queue.
+ * @return The size of the queue.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline size_t PriorityQueue<T, Compare, Alloc>::
 size() const noexcept
 {
-  return static_cast<size_t>(mSize);
+  return static_cast<size_t>(mCount);
 }
 
-// TODO: implement
+/**
+ * @brief Get the top value.
+ * @return A copy of the top value in the queue.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline T PriorityQueue<T, Compare, Alloc>::
 top() const noexcept
@@ -295,29 +284,64 @@ top() const noexcept
   return mPtr[0];
 }
 
-// TODO: implement
+/**
+ * @brief Push an item into the queue by copying the value.
+ * @param value The value copied and pushed into the queue.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 push(const value_type& value)
 {
-  return;
+  emplace(value);
 }
 
-// TODO: implement
+/**
+ * @brief Push an item into the queue by moving it.
+ * @param value The value moved into the queue.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 push(value_type&& value)
 {
-  return;
+  emplace(std::move(value));
 }
 
-// TODO: implement
+/**
+ * @brief Push an item into the queue by constructing it in place.
+ * @param args The arguments used to construct the object.
+ */
 template<typename T, typename Compare, typename Alloc>
   template<typename Args...>
 inline void PriorityQueue<T, Compare, Alloc>::
 emplace(Args&&... args)
 {
-  return;
+  if (mCount < mSize) {
+    mAlloc.construct(mPtr+mCount, std::forward(args)...);
+    ++mCount;
+    bubbleUp(mCount-1);
+    return;
+  }
+
+  mSize <<= SIZE_MULT;
+  auto tmp = mAlloc.allocate(mSize);
+
+  // copy items
+  // TODO: catch any exceptions that may arise during construction
+  for (int i = 0; i < mCount; ++i)
+    mAlloc.construct(tmp+i, mPtr[i]);
+
+  // destroy copies of items
+  for (int i = 0; i < mCount; ++i)
+    mAlloc.destroy(mPtr+i);
+
+  // swap and release resources
+  mAlloc.deallocate(mPtr);
+  mPtr = tmp;
+
+  // emplace args
+  mAlloc.construct(mPtr+mCount, std::forward(args)...);
+  ++mCount;
+  bubbleUp(mCount-1);
 }
 
 // TODO: implement
