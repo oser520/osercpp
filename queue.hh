@@ -126,7 +126,7 @@ private:
   /**
    * movement functions
    */
-  void bubbleDown(int index) noexcept;
+  void bubbleDown(int index = 0) noexcept;
   void bubbleUp(int index) noexcept;
 
 
@@ -344,20 +344,21 @@ emplace(Args&&... args)
   bubbleUp(mCount-1);
 }
 
-// TODO: implement
+/**
+ * @brief Remove the top value from the heap.
+ */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
 pop() noexcept(std::is_nothrow_destructible<T>::value)
 {
-  return;
-}
+  if (mCount == 0)
+    return;
 
-// TODO: implement
-template<typename T, typename Compare, typename Alloc>
-inline void PriorityQueue<T, Compare, Alloc>::
-pop() noexcept(std::is_nothrow_destructible<T>::value)
-{
-  return;
+  auto last = mCount - 1;
+  mPtr[0] = mPtr[last];
+  mAlloc.destroy(mPtr+last);
+  --mCount;
+  bubbleDown();
 }
 
 // TODO: implement
@@ -491,6 +492,67 @@ bubbleUp(int index) const noexcept
   }  
 
   mPtr[index] = val;
+}
+
+/**
+ * @brief Output operator.
+ * @detail Items are ordered like they are stored internally.
+ * @param os The output stream.
+ * @param pq The priority queue.
+ * @return A reference to the output stream.
+ */
+template<typename T, typename Compare, typename Alloc>
+std::ostream&
+operator<<(std::ostream& os, const PriorityQueue<T, Compare, Alloc>& pq)
+{
+  os << "{";
+
+  auto last = mCount - 1;
+  for (int i = 0; i < last; ++i)
+    os << mPtr[i] << ", ";
+
+  os << mPtr[last] << "}";
+
+  return os;
+}
+
+/**
+ * @brief Equality operator.
+ * @param pq1 The first priority queue.
+ * @param pq2 The second priority queue.
+ * @return True if the queues are equal, false otherwise.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+bool operator==
+  (const PriorityQueue<T, Compare, Alloc>& pq1,
+   const PriorityQueue<T, Compare, Alloc>& pq2) noexcept
+{
+  if (pq1.mCount != pq2.mCount)
+    return false;
+
+  for (int i = 0; i < pq1.mCount; ++i)
+  {
+    if (pq1.mPtr[i] != pq2.mPtr[i])
+      return false;
+  }
+
+  return true;
+}
+
+/**
+ * @brief Non-equality operator.
+ * @param pq1 The first priority queue.
+ * @param pq2 The second priority queue.
+ * @return True if the queues are not equal, false otherwise.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+bool operator!=
+  (const PriorityQueue<T, Compare, Alloc>& pq1,
+   const PriorityQueue<T, Compare, Alloc>& pq2) noexcept
+{
+  return !(pq1 == pq2);
 }
 
 } // namespace ospp
