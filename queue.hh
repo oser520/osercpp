@@ -128,6 +128,7 @@ private:
    */
   void bubbleDown(int index = 0) noexcept;
   void bubbleUp(int index) noexcept;
+  int familyMin(int index) const noexcept;
 
 
   /**
