@@ -496,6 +496,21 @@ bubbleUp(int index) const noexcept
 }
 
 /**
+ * @brief Return the index of the node with the value that should be at the top
+ *  between a parent and its two children.
+ * @param index The index of the parent node.
+ * @return The index of the node with the value that should at the top.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+inline int PriorityQueue<T, Compare, Alloc>::
+familyMin(int index) const noexcept
+{
+  // TODO: implement function
+  return 0;
+}
+
+/**
  * @brief Output operator.
  * @detail Items are ordered like they are stored internally.
  * @param os The output stream.
