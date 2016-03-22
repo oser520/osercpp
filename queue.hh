@@ -433,7 +433,7 @@ rightChild(int index) const noexcept
  */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
-bubbleDown(int index) const noexcept
+bubbleDown(int index) noexcept
 {
   assert(index >= 0 && index < mCount);
 
@@ -478,7 +478,7 @@ bubbleDown(int index) const noexcept
  */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
-bubbleUp(int index) const noexcept
+bubbleUp(int index) noexcept
 {
   assert(index >= 0 && index < mCount);
 
