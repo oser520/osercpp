@@ -363,7 +363,7 @@ emplace(Args&&... args)
   mPtr = tmp;
 
   // emplace args
-  mAlloc.construct(mPtr+mCount, std::forward(args)...);
+  mAlloc.construct(mPtr+mCount, std::forward<Args>(args)...);
   ++mCount;
   bubbleUp(mCount-1);
 }
@@ -508,7 +508,7 @@ bubbleUp(int index) noexcept
   auto val = mPtr[index];
   auto i = parent(index);
 
-  while (i >= 0 && mComp(mPtr[i], val))
+  while (i >= 0 && mCompare(mPtr[i], val))
   {
     mPtr[index] = mPtr[i];
     index = i;
