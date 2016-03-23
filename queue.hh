@@ -506,8 +506,18 @@ template<typename T, typename Compare, typename Alloc>
 inline int PriorityQueue<T, Compare, Alloc>::
 familyMin(int index) const noexcept
 {
-  // TODO: implement function
-  return 0;
+  assert(index >= 0 && index < mCount);
+
+  auto lc = leftChild(index);
+  auto rc = rightChild(index);
+
+  if (lc < mCount && mCompare(mPtr[lc], mPtr[index])
+    index = lc;
+
+  if (rc < mCount && mCompare(mPtr[rc], mPtr[index])
+    index = rc;
+
+  return index;
 }
 
 /**
