@@ -19,6 +19,25 @@ TEST(PriorityQueue, DefaultCtors)
   EXPECT_EQ(0, pq.size());
 }
 
+// Test PriorityQueue default ctor
+TEST(PriorityQueue, pushTest)
+{
+  PriorityQueue<int> pq;
+  pq.push(7);
+  pq.push(7);
+  pq.push(9);
+  pq.push(8);
+  pq.push(4);
+  pq.push(5);
+  pq.push(6);
+  pq.push(2);
+  pq.push(2);
+  pq.push(1);
+
+  EXPECT_FALSE(pq.empty());
+  EXPECT_EQ(10, pq.size());
+}
+
 } // anonymous namespace
 
 int main(int argc, char *argv[])
