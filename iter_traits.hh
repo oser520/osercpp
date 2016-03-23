@@ -20,7 +20,7 @@ namespace ospp {
 template<typename Iter>
 struct is_input_iter
 {
-  using category = std::iterator_traits<Iter>::iterator_category;
+  using category = typename std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::input_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
 };
@@ -31,7 +31,7 @@ struct is_input_iter
 template<typename Iter>
 struct is_forward_iter
 {
-  using category = std::iterator_traits<Iter>::iterator_category;
+  using category = typename std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::forward_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
 };
@@ -42,7 +42,7 @@ struct is_forward_iter
 template<typename Iter>
 struct is_bidirectional_iter
 {
-  using category = std::iterator_traits<Iter>::iterator_category;
+  using category = typename std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::bidirectional_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
 };
@@ -53,7 +53,7 @@ struct is_bidirectional_iter
 template<typename Iter>
 struct is_random_iter
 {
-  using category = std::iterator_traits<Iter>::iterator_category;
+  using category = typename std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::random_access_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
 };
@@ -64,7 +64,7 @@ struct is_random_iter
 template<typename Iter>
 struct is_output_iter
 {
-  using category = std::iterator_traits<Iter>::iterator_category;
+  using category = typename std::iterator_traits<Iter>::iterator_category;
   using true_or_false = std::is_same<category, std::output_iterator_tag>;
   using value = std::integral_constant<bool, true_or_false::value>;
 };

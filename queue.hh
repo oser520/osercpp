@@ -48,14 +48,14 @@ public:
    */
   using value_type = T;
   using allocator_type = Alloc;
-  using reference = Alloc::reference;
-  using const_reference = Alloc::const_reference;
-  using pointer = Alloc::pointer;
-  using const_pointer = Alloc::const_pointer;
+  using reference = typename Alloc::reference;
+  using const_reference = typename Alloc::const_reference;
+  using pointer = typename Alloc::pointer;
+  using const_pointer = typename Alloc::const_pointer;
   using iterator = PriorityQueueIter<value_type>;
   // TODO: determine how to write const iterator version
   //using const_iterator = const PriorityQueueIter<value_type>;
-  using difference_type = std::iterator_traits<iterator>::difference_type;
+  //using difference_type = typename std::iterator_traits<iterator>::difference_type;
   using size_type = size_t;
   using compare_type = Compare;
   // TODO: create alias for reverse iterator
@@ -73,7 +73,7 @@ public:
   template
   <
     typename InputIterator,
-    typename = std::enable_if<is_input_iter<InputIterator>::value>::type
+    typename = typename std::enable_if<is_input_iter<InputIterator>::value>::type
   >
   PriorityQueue(InputIterator first, InputIterator last);
 
@@ -112,7 +112,7 @@ public:
    */
   std::string toString() const;
   template<typename Hash = std::hash<T>>
-  size_type hashCode() const noexcept;
+  size_type hashCode(const Hash& hsh = Hash()) const noexcept;
 
 private:
 
@@ -159,9 +159,16 @@ private:
   /**
    * friends
    */
-  friend std::ostream& operator<<(std::ostream&, const PriorityQueue&);
-  friend bool operator==(const PriorityQueue&, const PriorityQueue&) noexcept;
-  friend template<typename T> class PriorityQueueIter;
+  template<typename U, typename CompareU, typename AllocU>
+  friend std::ostream&
+  operator<<(std::ostream&, const PriorityQueue<U, CompareU, AllocU>&);
+
+  template<typename U, typename CompareU, typename AllocU>
+  friend bool operator==
+    (const PriorityQueue<U, CompareU, AllocU>&,
+     const PriorityQueue<U, CompareU, AllocU>&) noexcept;
+
+  template<typename U> friend class PriorityQueueIter;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -253,6 +260,20 @@ PriorityQueue(InputIterator first, InputIterator last)
 }
 
 /**
+ * dtor
+ * Relinquish the resources used for the queue.
+ */
+template<typename T, typename Compare, typename Alloc>
+PriorityQueue<T, Compare, Alloc>::
+~PriorityQueue() noexcept
+{
+  for (auto i = mCount - 1; i >= 0; --i)
+    mAlloc.destroy(mPtr+i);
+
+  mAlloc.deallocate(mPtr, mSize);
+}
+
+/**
  * @brief Determine if the queue is empty.
  * @return True if the queue is empty, false otherwise.
  */
@@ -312,7 +333,7 @@ push(value_type&& value)
  * @param args The arguments used to construct the object.
  */
 template<typename T, typename Compare, typename Alloc>
-  template<typename Args...>
+  template<typename... Args>
 inline void PriorityQueue<T, Compare, Alloc>::
 emplace(Args&&... args)
 {
@@ -323,6 +344,7 @@ emplace(Args&&... args)
     return;
   }
 
+  auto oldSize = mSize;
   mSize <<= SIZE_MULT;
   auto tmp = mAlloc.allocate(mSize);
 
@@ -336,7 +358,7 @@ emplace(Args&&... args)
     mAlloc.destroy(mPtr+i);
 
   // swap and release resources
-  mAlloc.deallocate(mPtr);
+  mAlloc.deallocate(mPtr, oldSize);
   mPtr = tmp;
 
   // emplace args
@@ -372,7 +394,7 @@ toString() const
 
 // TODO: implement
 template<typename T, typename Compare, typename Alloc>
-  template<typename Hash>>
+  template<typename Hash>
 inline size_t PriorityQueue<T, Compare, Alloc>::
 hashCode(const Hash& hsh) const noexcept
 {
@@ -485,7 +507,7 @@ bubbleUp(int index) noexcept
   auto val = mPtr[index];
   auto i = parent(index);
 
-  while (i >= 0 && mComp(mPtr[i], val)
+  while (i >= 0 && mComp(mPtr[i], val))
   {
     mPtr[index] = mPtr[i];
     index = i;
@@ -511,10 +533,10 @@ familyMin(int index) const noexcept
   auto lc = leftChild(index);
   auto rc = rightChild(index);
 
-  if (lc < mCount && mCompare(mPtr[lc], mPtr[index])
+  if (lc < mCount && mCompare(mPtr[lc], mPtr[index]))
     index = lc;
 
-  if (rc < mCount && mCompare(mPtr[rc], mPtr[index])
+  if (rc < mCount && mCompare(mPtr[rc], mPtr[index]))
     index = rc;
 
   return index;
@@ -533,11 +555,11 @@ operator<<(std::ostream& os, const PriorityQueue<T, Compare, Alloc>& pq)
 {
   os << "{";
 
-  auto last = mCount - 1;
+  auto last = pq.mCount - 1;
   for (int i = 0; i < last; ++i)
-    os << mPtr[i] << ", ";
+    os << pq.mPtr[i] << ", ";
 
-  os << mPtr[last] << "}";
+  os << pq.mPtr[last] << "}";
 
   return os;
 }

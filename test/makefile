@@ -36,7 +36,7 @@ test_queue: $(OBJ_QUEUE)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ $(LFLAGS) -o $@
 
 # Header dependencies.
-$(OBJ_QUEUE): queue.hh
+$(OBJ_QUEUE): queue.hh iter_traits.hh
 
 .PHONY: run clean
 # Run all unit tests.

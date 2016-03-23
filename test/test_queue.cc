@@ -9,14 +9,14 @@
 
 namespace {
 
-using zoor:PriorityQueue;
+using ospp::PriorityQueue;
 
 // Test PriorityQueue default ctor
 TEST(PriorityQueue, DefaultCtors)
 {
   PriorityQueue<int> pq;
-  TEST_TRUE(pq.isEmpty());
-  TEST_EQ(0, pq.size());
+  EXPECT_TRUE(pq.empty());
+  EXPECT_EQ(0, pq.size());
 }
 
 } // anonymous namespace
