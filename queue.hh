@@ -339,7 +339,7 @@ inline void PriorityQueue<T, Compare, Alloc>::
 emplace(Args&&... args)
 {
   if (mCount < mSize) {
-    mAlloc.construct(mPtr+mCount, std::forward(args)...);
+    mAlloc.construct(mPtr+mCount, std::forward<Args>(args)...);
     ++mCount;
     bubbleUp(mCount-1);
     return;
