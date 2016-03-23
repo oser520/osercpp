@@ -9,12 +9,14 @@
 
 namespace {
 
-/**
- * Test PriorityQueue
- */
-TEST(PriorityQueue, Ctors)
+using zoor:PriorityQueue;
+
+// Test PriorityQueue default ctor
+TEST(PriorityQueue, DefaultCtors)
 {
-  // TODO: create unit tests for ctors
+  PriorityQueue<int> pq;
+  TEST_TRUE(pq.isEmpty());
+  TEST_EQ(0, pq.size());
 }
 
 } // anonymous namespace
