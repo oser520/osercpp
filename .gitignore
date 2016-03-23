@@ -1,2 +1,8 @@
 # Ignore VIM swap files.
 *.swp
+
+# Ignore object files
+*.o
+
+# Ignore unit test executables
+test_queue
