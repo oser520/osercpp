@@ -12,7 +12,7 @@ namespace {
 using ospp::PriorityQueue;
 
 // Test PriorityQueue default ctor
-TEST(PriorityQueue, DefaultCtors)
+TEST(PriorityQueue1, DefaultCtors)
 {
   PriorityQueue<int> pq;
   EXPECT_TRUE(pq.empty());
@@ -20,7 +20,7 @@ TEST(PriorityQueue, DefaultCtors)
 }
 
 // Test PriorityQueue default ctor
-TEST(PriorityQueue, pushTest)
+TEST(PriorityQueue2, pushTest)
 {
   PriorityQueue<int> pq;
   pq.push(7);
