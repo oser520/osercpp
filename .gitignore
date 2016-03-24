@@ -9,4 +9,5 @@ test_queue
 
 # Ignore my personal debugging tool
 main
+main.cc
 makedbg
