@@ -12,6 +12,7 @@
 #include <iterator>
 #include <type_traits>
 #include <utility>
+#include <cassert>
 
 #include "iter_traits.hh"
 
