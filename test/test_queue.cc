@@ -55,6 +55,10 @@ TEST(PriorityQueue2, top_and_pop)
 
   EXPECT_EQ(10, pq.size());
   EXPECT_EQ(1, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(9, pq.size());
+  EXPECT_EQ(2, pq.top());
 }
 
 } // anonymous namespace
