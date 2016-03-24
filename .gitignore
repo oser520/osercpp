@@ -6,3 +6,7 @@
 
 # Ignore unit test executables
 test_queue
+
+# Ignore my personal debugging tool
+main
+makedbg
