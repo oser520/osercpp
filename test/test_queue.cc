@@ -19,8 +19,8 @@ TEST(PriorityQueue1, DefaultCtors)
   EXPECT_EQ(0, pq.size());
 }
 
-// Test PriorityQueue default ctor
-TEST(PriorityQueue2, pushTest)
+// Test push
+TEST(PriorityQueue2, push)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -39,7 +39,7 @@ TEST(PriorityQueue2, pushTest)
 }
 
 // Test top and pop
-TEST(PriorityQueue2, topAndPopTest)
+TEST(PriorityQueue2, top_and_pop)
 {
   PriorityQueue<int> pq;
   pq.push(7);
