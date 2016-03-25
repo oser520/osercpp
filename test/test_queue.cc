@@ -4,6 +4,8 @@
  * @date 2016-03-18
  */
 
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "queue.hh"
 
@@ -33,6 +35,15 @@ TEST(PriorityQueue1, compareTypeParam)
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
   EXPECT_EQ(0, pq.size());
+}
+
+// Test PriorityQueue iterator ctor
+TEST(PriorityQueue1, iterCtor)
+{
+  std::vector<int> ivec({1, 3, 5, 7, 10});
+  PriorityQueue<int> pq(ivec.begin(), ivec.end());
+  EXPECT_TRUE(pq.empty());
+  EXPECT_EQ(5, pq.size());
 }
 
 // Test push
