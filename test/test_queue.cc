@@ -19,6 +19,14 @@ TEST(PriorityQueue1, DefaultCtors)
   EXPECT_EQ(0, pq.size());
 }
 
+// Test PriorityQueue constructor with size parameter
+TEST(PriorityQueue1, sizeParamCtor)
+{
+  PriorityQueue<int> pq(20);
+  EXPECT_TRUE(pq.empty());
+  EXPECT_EQ(0, pq.size());
+}
+
 // Test push
 TEST(PriorityQueue2, push)
 {
