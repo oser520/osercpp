@@ -129,11 +129,11 @@ TEST(PriorityQueue7, rightChild)
   pq.push(2);
   pq.push(1);
 
-  EXPECT_EQ(2, pq.leftChild(0));
-  EXPECT_EQ(4, pq.leftChild(1));
-  EXPECT_EQ(6, pq.leftChild(2));
-  EXPECT_EQ(7, pq.leftChild(3));
-  EXPECT_EQ(8, pq.leftChild(4));
+  EXPECT_EQ(2, pq.rightChild(0));
+  EXPECT_EQ(4, pq.rightChild(1));
+  EXPECT_EQ(6, pq.rightChild(2));
+  EXPECT_EQ(7, pq.rightChild(3));
+  EXPECT_EQ(8, pq.rightChild(4));
 }
 
 // Test top and pop
