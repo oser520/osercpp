@@ -22,7 +22,7 @@ TEST(PriorityQueue1, DefaultCtors)
 }
 
 // Test PriorityQueue constructor with size parameter
-TEST(PriorityQueue1, sizeParamCtor)
+DISABLED_TEST(PriorityQueue1, sizeParamCtor)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
@@ -30,7 +30,7 @@ TEST(PriorityQueue1, sizeParamCtor)
 }
 
 // Test PriorityQueue constructor different compare type
-TEST(PriorityQueue2, compareTypeParam)
+DISABLED_TEST(PriorityQueue2, compareTypeParam)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
@@ -38,7 +38,7 @@ TEST(PriorityQueue2, compareTypeParam)
 }
 
 // Test PriorityQueue iterator ctor
-TEST(PriorityQueue3, iterCtor)
+DISABLED_TEST(PriorityQueue3, iterCtor)
 {
   std::vector<int> ivec({1, 3, 5, 7, 10});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
