@@ -66,7 +66,7 @@ TEST(PriorityQueue4, push)
 }
 
 // Test parent
-TEST(PriorityQueue4, parent)
+TEST(PriorityQueue5, parent)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -93,7 +93,7 @@ TEST(PriorityQueue4, parent)
 }
 
 // Test leftChild
-TEST(PriorityQueue4, leftChild)
+TEST(PriorityQueue6, leftChild)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -115,7 +115,7 @@ TEST(PriorityQueue4, leftChild)
 }
 
 // Test rightChild
-TEST(PriorityQueue4, rightChild)
+TEST(PriorityQueue7, rightChild)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -137,7 +137,7 @@ TEST(PriorityQueue4, rightChild)
 }
 
 // Test top and pop
-TEST(PriorityQueue5, top_and_pop)
+TEST(PriorityQueue8, top_and_pop)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -169,7 +169,7 @@ TEST(PriorityQueue5, top_and_pop)
 
 // Test toString
 // TODO: implement test
-DISABLED_TEST(PriorityQueue6, toString)
+DISABLED_TEST(PriorityQueue9, toString)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -201,7 +201,7 @@ DISABLED_TEST(PriorityQueue6, toString)
 
 // Test hashCode
 // TODO: implement test
-DISABLED_TEST(PriorityQueue7, hashCode)
+DISABLED_TEST(PriorityQueue10, hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
