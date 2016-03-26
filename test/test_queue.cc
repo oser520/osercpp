@@ -38,12 +38,15 @@ TEST(PriorityQueue2, DISABLED_compareTypeParam)
 }
 
 // Test PriorityQueue iterator ctor
-TEST(PriorityQueue3, DISABLED_iterCtor)
+TEST(PriorityQueue3, iterCtor)
 {
-  std::vector<int> ivec({1, 3, 5, 7, 10});
+  std::vector<int> ivec({10, 3, 7, 5, 1});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
-  EXPECT_TRUE(pq.empty());
   EXPECT_EQ(5, pq.size());
+  EXPECT_EQ(1, pq.top());
+  pq.pop();
+  EXPECT_EQ(3, pq.top());
+  EXPECT_EQ(4, pq.size());
 }
 
 // Test push
