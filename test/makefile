@@ -18,8 +18,9 @@ LDFLAGS  = -L/opt/googletest
 LFLAGS   = -lgtest -lpthread
 
 # Compiler flags.
+CDEFS    = -DOSPP_TEST_PRIVATE
 CXXFLAGS = -Wall -Wextra -std=c++11 -O2
-CXXFLAGS += $(GTFLAGS) $(INCDIR)
+CXXFLAGS += $(GTFLAGS) $(INCDIR) $(CDEFS)
 
 # Dependencies for each unit test program.
 OBJ_QUEUE = test_queue.o
