@@ -107,7 +107,7 @@ TEST(PriorityQueue6, leftChild)
   pq.push(2);
   pq.push(1);
 
-  EXPECT_EQ(1 pq.parent(0));
+  EXPECT_EQ(1, pq.parent(0));
   EXPECT_EQ(3, pq.parent(1));
   EXPECT_EQ(5, pq.parent(2));
   EXPECT_EQ(7, pq.parent(3));
@@ -129,7 +129,7 @@ TEST(PriorityQueue7, rightChild)
   pq.push(2);
   pq.push(1);
 
-  EXPECT_EQ(2 pq.parent(0));
+  EXPECT_EQ(2, pq.parent(0));
   EXPECT_EQ(4, pq.parent(1));
   EXPECT_EQ(6, pq.parent(2));
   EXPECT_EQ(7, pq.parent(3));
