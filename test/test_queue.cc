@@ -171,7 +171,7 @@ TEST(PriorityQueue8, top_and_pop)
 }
 
 // Test toString
-// TODO: implement test
+// TODO: implement test when priority queue iter is ready
 TEST(PriorityQueue9, DISABLED_toString)
 {
   PriorityQueue<int> pq;
