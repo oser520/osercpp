@@ -92,6 +92,28 @@ TEST(PriorityQueue4, parent)
   EXPECT_EQ(4, pq.parent(9));
 }
 
+// Test leftChild
+TEST(PriorityQueue4, leftChild)
+{
+  PriorityQueue<int> pq;
+  pq.push(7);
+  pq.push(7);
+  pq.push(9);
+  pq.push(8);
+  pq.push(4);
+  pq.push(5);
+  pq.push(6);
+  pq.push(2);
+  pq.push(2);
+  pq.push(1);
+
+  EXPECT_EQ(1 pq.parent(0));
+  EXPECT_EQ(3, pq.parent(1));
+  EXPECT_EQ(5, pq.parent(2));
+  EXPECT_EQ(7, pq.parent(3));
+  EXPECT_EQ(9, pq.parent(4));
+}
+
 // Test top and pop
 TEST(PriorityQueue5, top_and_pop)
 {
