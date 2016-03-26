@@ -68,6 +68,7 @@ public:
   explicit PriorityQueue(const size_t size);
   explicit PriorityQueue(const allocator_type& alloc);
   explicit PriorityQueue(const compare_type& comp);
+#if 0
   explicit PriorityQueue
     (const size_t size = DEFAULT_SIZE,
      const compare_type& comp = compare_type(),
@@ -78,6 +79,7 @@ public:
     typename = typename std::enable_if<is_input_iter<InputIterator>::value>::type
   >
   PriorityQueue(InputIterator first, InputIterator last);
+#endif
 
   /**
    * Copy Construct
@@ -227,6 +229,7 @@ PriorityQueue(const compare_type& comp)
   mPtr = mAlloc.allocate(mSize);
 }
 
+#if 0
 // ctor
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
@@ -242,6 +245,7 @@ PriorityQueue
 {
   mPtr = mAlloc.allocate(mSize);
 }
+#endif
 
 // ctor
 template<typename T, typename Compare, typename Alloc>
