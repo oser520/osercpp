@@ -65,6 +65,7 @@ public:
   /**
    * Initialize
    */
+  explicit PriorityQueue();
   explicit PriorityQueue(const size_t size);
   explicit PriorityQueue(const allocator_type& alloc);
   explicit PriorityQueue(const compare_type& comp);
@@ -180,6 +181,21 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Default ctor.
+ */
+template<typename T, typename Compare, typename  Alloc>
+PriorityQueue<T, Compare, Alloc>::
+PriorityQueue()
+  : mPtr(nullptr),
+    mAlloc(),
+    mCompare(),
+    mSize(DEFAULT_SIZE),
+    mCount()
+{
+  mPtr = mAlloc.allocate(mSize);
+}
 
 /**
  * @brief Constructor with one parameter.
