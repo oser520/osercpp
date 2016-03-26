@@ -229,6 +229,34 @@ TEST(PriorityQueue10, DISABLED_hashCode)
   pq.pop();
   EXPECT_EQ(7, pq.size());
   EXPECT_EQ(4, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(6, pq.size());
+  EXPECT_EQ(5, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(5, pq.size());
+  EXPECT_EQ(6, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(4, pq.size());
+  EXPECT_EQ(7, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(3, pq.size());
+  EXPECT_EQ(7, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(2, pq.size());
+  EXPECT_EQ(8, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(1, pq.size());
+  EXPECT_EQ(9, pq.top());
+
+  pq.pop();
+  EXPECT_EQ(0, pq.size());
+  EXPECT_TRUE(pq.empty());
 }
 
 } // anonymous namespace
