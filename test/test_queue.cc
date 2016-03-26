@@ -22,7 +22,7 @@ TEST(PriorityQueue1, DefaultCtors)
 }
 
 // Test PriorityQueue constructor with size parameter
-DISABLED_TEST(PriorityQueue1, sizeParamCtor)
+TEST(PriorityQueue1, DISABLED_sizeParamCtor)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
@@ -30,7 +30,7 @@ DISABLED_TEST(PriorityQueue1, sizeParamCtor)
 }
 
 // Test PriorityQueue constructor different compare type
-DISABLED_TEST(PriorityQueue2, compareTypeParam)
+TEST(PriorityQueue2, DISABLED_compareTypeParam)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
@@ -38,7 +38,7 @@ DISABLED_TEST(PriorityQueue2, compareTypeParam)
 }
 
 // Test PriorityQueue iterator ctor
-DISABLED_TEST(PriorityQueue3, iterCtor)
+TEST(PriorityQueue3, DISABLED_iterCtor)
 {
   std::vector<int> ivec({1, 3, 5, 7, 10});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
@@ -169,7 +169,7 @@ TEST(PriorityQueue8, top_and_pop)
 
 // Test toString
 // TODO: implement test
-DISABLED_TEST(PriorityQueue9, toString)
+TEST(PriorityQueue9, DISABLED_toString)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -201,7 +201,7 @@ DISABLED_TEST(PriorityQueue9, toString)
 
 // Test hashCode
 // TODO: implement test
-DISABLED_TEST(PriorityQueue10, hashCode)
+TEST(PriorityQueue10, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
