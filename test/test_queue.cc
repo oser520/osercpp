@@ -130,7 +130,7 @@ DISABLED_TEST(PriorityQueue6, toString)
 
 // Test hashCode
 // TODO: implement test
-DISABLED_TEST(PriorityQueue6, hashCode)
+DISABLED_TEST(PriorityQueue7, hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
