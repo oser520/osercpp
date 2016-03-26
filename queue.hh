@@ -484,13 +484,13 @@ bubbleDown(int index) noexcept
   assert(index >= 0 && index < mCount);
 
   auto val = mPtr[index];
-  auto i = familyMin(index);
+  auto i = familyMin(val, index);
 
   while (i != index)
   {
     mPtr[index] = mPtr[i];
     index = i;
-    i = familyMin(index);
+    i = familyMin(val, index);
   }
 
   mPtr[index] = val;
