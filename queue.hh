@@ -73,13 +73,13 @@ public:
     (const size_t size = DEFAULT_SIZE,
      const compare_type& comp = compare_type(),
      const allocator_type& alloc = allocator_type());
+#endif
   template
   <
     typename InputIterator,
     typename = typename std::enable_if<is_input_iter<InputIterator>::value>::type
   >
   PriorityQueue(InputIterator first, InputIterator last);
-#endif
 
   /**
    * Copy Construct
