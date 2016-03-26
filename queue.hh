@@ -135,7 +135,7 @@ public:
    */
   void bubbleDown(int index = 0) noexcept;
   void bubbleUp(int index) noexcept;
-  int familyMin(int index) const noexcept;
+  int familyMin(const T& val, int index) const noexcept;
 
 
   /**
@@ -529,18 +529,18 @@ bubbleUp(int index) noexcept
  */
 template<typename T, typename Compare, typename Alloc>
 inline int PriorityQueue<T, Compare, Alloc>::
-familyMin(int index) const noexcept
+familyMin(const T& val, int index) const noexcept
 {
   assert(index >= 0 && index < mCount);
 
   auto lc = leftChild(index);
   auto rc = rightChild(index);
 
-  if (lc < mCount && mCompare(mPtr[lc], mPtr[index]))
-    index = lc;
+  if (lc < mCount && mCompare(mPtr[lc], val))
+    return mCompare(mPtr[lc], mPtr[rc]) ? lc : rc;
 
-  if (rc < mCount && mCompare(mPtr[rc], mPtr[index]))
-    index = rc;
+  if (rc < mCount && mCompare(mPtr[rc], val))
+    return rc;
 
   return index;
 }
