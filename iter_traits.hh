@@ -21,8 +21,9 @@ template<typename Iter>
 struct is_input_iter
 {
   using category = typename std::iterator_traits<Iter>::iterator_category;
-  using true_or_false = std::is_same<category, std::input_iterator_tag>;
-  using value = std::integral_constant<bool, true_or_false::value>;
+  static const bool
+  value = std::is_base_of<std::input_iterator_tag, category>::value;
+  //using value = std::integral_constant<bool, true_or_false::value>;
 };
 
 /**
