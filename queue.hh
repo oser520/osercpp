@@ -111,6 +111,7 @@ public:
   template<typename... Args>
   void emplace(Args&&... args);
   void pop() noexcept(std::is_nothrow_destructible<T>::value);
+  size_t capacity() const noexcept;
 
   /**
    * object functionality
