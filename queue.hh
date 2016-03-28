@@ -409,6 +409,19 @@ pop() noexcept(std::is_nothrow_destructible<T>::value)
   bubbleDown();
 }
 
+/**
+ * @return The current capacity of the priority queue.
+ * @details The capacity refers to the total number of items that can be added to
+ * the queue before it needs to be reallocated to a different chunk of memory.
+ * @throw Never throws.
+ */
+template<typename T, typename Compare, typename Alloc>
+inline size_t PriorityQueue<T, Compare, Alloc>::
+capacity() const noexcept
+{
+  return static_cast<size_t>(mSize);
+}
+
 // TODO: implement
 template<typename T, typename Compare, typename Alloc>
 inline std::string PriorityQueue<T, Compare, Alloc>::
