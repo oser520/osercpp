@@ -394,6 +394,7 @@ emplace(Args&&... args)
 
 /**
  * @brief Remove the top value from the heap.
+ * @throw Does not throw if the destructor for <em>T</em> does not throw.
  */
 template<typename T, typename Compare, typename Alloc>
 inline void PriorityQueue<T, Compare, Alloc>::
