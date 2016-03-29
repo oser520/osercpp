@@ -22,7 +22,7 @@ TEST(PriorityQueue1, DefaultCtors)
 }
 
 // Test PriorityQueue constructor with size parameter
-TEST(PriorityQueue1, DISABLED_sizeParamCtor)
+TEST(PriorityQueue2, DISABLED_sizeParamCtor)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
@@ -30,7 +30,7 @@ TEST(PriorityQueue1, DISABLED_sizeParamCtor)
 }
 
 // Test PriorityQueue constructor different compare type
-TEST(PriorityQueue2, DISABLED_compareTypeParam)
+TEST(PriorityQueue3, DISABLED_compareTypeParam)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
@@ -38,7 +38,7 @@ TEST(PriorityQueue2, DISABLED_compareTypeParam)
 }
 
 // Test PriorityQueue iterator ctor
-TEST(PriorityQueue3, iterCtor)
+TEST(PriorityQueue4, iterCtor)
 {
   std::vector<int> ivec({10, 3, 7, 5, 1});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
@@ -50,7 +50,7 @@ TEST(PriorityQueue3, iterCtor)
 }
 
 // Test push
-TEST(PriorityQueue4, push)
+TEST(PriorityQueue5, push)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -69,7 +69,7 @@ TEST(PriorityQueue4, push)
 }
 
 // Test parent
-TEST(PriorityQueue5, parent)
+TEST(PriorityQueue6, parent)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -96,7 +96,7 @@ TEST(PriorityQueue5, parent)
 }
 
 // Test leftChild
-TEST(PriorityQueue6, leftChild)
+TEST(PriorityQueue7, leftChild)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -118,7 +118,7 @@ TEST(PriorityQueue6, leftChild)
 }
 
 // Test rightChild
-TEST(PriorityQueue7, rightChild)
+TEST(PriorityQueue8, rightChild)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -140,7 +140,7 @@ TEST(PriorityQueue7, rightChild)
 }
 
 // Test top and pop
-TEST(PriorityQueue8, top_and_pop)
+TEST(PriorityQueue9, top_and_pop)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -172,7 +172,7 @@ TEST(PriorityQueue8, top_and_pop)
 
 // Test toString
 // TODO: implement test when priority queue iter is ready
-TEST(PriorityQueue9, DISABLED_toString)
+TEST(PriorityQueue10, DISABLED_toString)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -204,7 +204,7 @@ TEST(PriorityQueue9, DISABLED_toString)
 
 // Test hashCode
 // TODO: implement test
-TEST(PriorityQueue10, DISABLED_hashCode)
+TEST(PriorityQueue11, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
