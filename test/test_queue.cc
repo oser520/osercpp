@@ -170,6 +170,22 @@ TEST(PriorityQueue9, top_and_pop)
   EXPECT_EQ(4, pq.top());
 }
 
+// Test capacity
+TEST(PriorityQueue10, capacity)
+{
+  PriorityQueue<int> pq;
+
+  EXPECT_EQ(8, pq.capacity());
+
+  for (int i = 0; i < 8; ++i)
+    pq.push(i);
+
+  EXPECT_EQ(8, pq.capacity());
+
+  pq.push(2);
+  EXPECT_EQ(16, pq.capacity());
+}
+
 // Test toString
 // TODO: implement test when priority queue iter is ready
 TEST(PriorityQueue10, DISABLED_toString)
