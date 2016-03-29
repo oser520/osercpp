@@ -188,7 +188,7 @@ TEST(PriorityQueue10, capacity)
 
 // Test toString
 // TODO: implement test when priority queue iter is ready
-TEST(PriorityQueue10, DISABLED_toString)
+TEST(PriorityQueue11, DISABLED_toString)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -220,7 +220,7 @@ TEST(PriorityQueue10, DISABLED_toString)
 
 // Test hashCode
 // TODO: implement test
-TEST(PriorityQueue11, DISABLED_hashCode)
+TEST(PriorityQueue12, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
