@@ -184,7 +184,10 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Default ctor.
+ * @brief Default ctor.
+ * @details The priority queue is initialized with an array of size 8, but none of
+ * the elements in the dynamic array are constructed.
+ * @throw May throw memory allocatoin failure.
  */
 template<typename T, typename Compare, typename  Alloc>
 PriorityQueue<T, Compare, Alloc>::
