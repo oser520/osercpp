@@ -143,32 +143,55 @@ TEST(PriorityQueue8, rightChild)
 // Test top and pop
 TEST(PriorityQueue9, top_and_pop)
 {
-  PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
+  PriorityQueue<int> lpq;
+  lpq.push(7);
+  lpq.push(7);
+  lpq.push(9);
+  lpq.push(8);
+  lpq.push(4);
+  lpq.push(5);
+  lpq.push(6);
+  lpq.push(2);
+  lpq.push(2);
+  lpq.push(1);
 
-  EXPECT_EQ(10, pq.size());
-  EXPECT_EQ(1, pq.top());
+  EXPECT_EQ(10, lpq.size());
+  EXPECT_EQ(1, lpq.top());
 
-  pq.pop();
-  EXPECT_EQ(9, pq.size());
-  EXPECT_EQ(2, pq.top());
+  lpq.pop();
+  EXPECT_EQ(9, lpq.size());
+  EXPECT_EQ(2, lpq.top());
 
-  pq.pop();
-  EXPECT_EQ(8, pq.size());
-  EXPECT_EQ(2, pq.top());
+  lpq.pop();
+  EXPECT_EQ(8, lpq.size());
+  EXPECT_EQ(2, lpq.top());
 
-  pq.pop();
-  EXPECT_EQ(7, pq.size());
-  EXPECT_EQ(4, pq.top());
+  lpq.pop();
+  EXPECT_EQ(7, lpq.size());
+  EXPECT_EQ(4, lpq.top());
+
+  // Now test with different compare type
+  PriorityQueue<int, std::greater<int>> gpq;
+  gpq.push(2);
+  gpq.push(2);
+  gpq.push(8);
+  gpq.push(1);
+  gpq.push(7);
+  gpq.push(7);
+  gpq.push(9);
+  gpq.push(4);
+  gpq.push(5);
+  gpq.push(6);
+
+  EXPECT_EQ(9, gpq.top());
+  gpq.pop();
+  EXPECT_EQ(8, gpq.top());
+  gpq.pop();
+  EXPECT_EQ(7, gpq.top());
+  gpq.pop();
+  EXPECT_EQ(7, gpq.top());
+  gpq.pop();
+  EXPECT_EQ(6, gpq.top());
 }
 
 // Test capacity
