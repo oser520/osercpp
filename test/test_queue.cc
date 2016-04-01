@@ -141,7 +141,7 @@ TEST(PriorityQueue8, rightChild)
 }
 
 // Test top and pop
-TEST(PriorityQueue9, top_and_pop)
+TEST(PriorityQueue9, topAndPop)
 {
   PriorityQueue<int> lpq;
   lpq.push(7);
