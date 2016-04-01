@@ -22,11 +22,11 @@ TEST(PriorityQueue1, DefaultCtors)
 }
 
 // Test PriorityQueue constructor with size parameter
-TEST(PriorityQueue2, DISABLED_sizeParamCtor)
+TEST(PriorityQueue2, sizeParamCtor)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
-  EXPECT_EQ(0, pq.size());
+  EXPECT_EQ(20, pq.capacity());
 }
 
 // Test PriorityQueue constructor different compare type
