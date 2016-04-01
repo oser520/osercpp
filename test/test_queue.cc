@@ -5,6 +5,7 @@
  */
 
 #include <vector>
+#include <functional>
 
 #include "gtest/gtest.h"
 #include "queue.hh"
@@ -30,7 +31,7 @@ TEST(PriorityQueue2, sizeParamCtor)
 }
 
 // Test PriorityQueue constructor different compare type
-TEST(PriorityQueue3, DISABLED_compareTypeParam)
+TEST(PriorityQueue3, compareTypeParam)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
