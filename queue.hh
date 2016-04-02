@@ -414,6 +414,14 @@ pop() noexcept(std::is_nothrow_destructible<T>::value)
     return;
 
   auto last = mCount - 1;
+
+  // No need to shuffle items if the last value is being popped
+  if (!last) {
+    mAlloc.destroy(mPtr+last);
+    --mCount;
+    return;
+  }
+
   mPtr[0] = mPtr[last];
   mAlloc.destroy(mPtr+last);
   --mCount;
