@@ -239,31 +239,7 @@ TEST(PriorityQueue11, capacity)
 TEST(PriorityQueue12, DISABLED_toString)
 {
   PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
-
-  EXPECT_EQ(10, pq.size());
-  EXPECT_EQ(1, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(9, pq.size());
-  EXPECT_EQ(2, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(8, pq.size());
-  EXPECT_EQ(2, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(7, pq.size());
-  EXPECT_EQ(4, pq.top());
+  EXPECT_TRUE(pq.empty());
 }
 
 // Test hashCode
@@ -271,58 +247,6 @@ TEST(PriorityQueue12, DISABLED_toString)
 TEST(PriorityQueue13, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
-
-  EXPECT_EQ(10, pq.size());
-  EXPECT_EQ(1, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(9, pq.size());
-  EXPECT_EQ(2, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(8, pq.size());
-  EXPECT_EQ(2, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(7, pq.size());
-  EXPECT_EQ(4, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(6, pq.size());
-  EXPECT_EQ(5, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(5, pq.size());
-  EXPECT_EQ(6, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(4, pq.size());
-  EXPECT_EQ(7, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(3, pq.size());
-  EXPECT_EQ(7, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(2, pq.size());
-  EXPECT_EQ(8, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(1, pq.size());
-  EXPECT_EQ(9, pq.top());
-
-  pq.pop();
-  EXPECT_EQ(0, pq.size());
   EXPECT_TRUE(pq.empty());
 }
 
