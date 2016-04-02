@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <functional>
+#include <random>
 
 #include "gtest/gtest.h"
 #include "queue.hh"
@@ -213,6 +214,24 @@ TEST(PriorityQueue10, capacity)
 
   pq.push(2);
   EXPECT_EQ(16, pq.capacity());
+}
+
+// Test top and pop with random numbers
+TEST(PriorityQueue20, topAndPopRandom)
+{
+  auto randInt =
+    std::bind(std::uniform_int_distribution<>(), std::default_random_engine(71));
+  std::vector<int> ivec;
+  for (int i = 0; i < 1000; ++i) ivec.push_back(randInt());
+
+  PriorityQueue<int> lpq(ivec.cbegin(), ivec.cend());
+  std::vector<int> orderedIvec;
+  while (!lpq.empty()) {
+    orderedIvec.push_back(lpq.top());
+    lpq.pop();
+  }
+  std::sort(ivec.begin(), ivec.end());
+  EXPECT_TRUE(std::equal(ivec.cbegin(), ivec.cend(), orderedIvec.cbegin()));
 }
 
 // Test toString
