@@ -31,9 +31,14 @@ TEST(PriorityQueue2, sizeParamCtor)
 }
 
 // Test PriorityQueue constructor different compare type
-TEST(PriorityQueue3, compareTypeParam)
+TEST(PriorityQueue3, compTypeParamCtor)
 {
   PriorityQueue<int, std::greater<int>> pq;
+  EXPECT_TRUE(pq.empty());
+  EXPECT_EQ(0, pq.size());
+
+  auto f = [](const int &a, const int &b) -> bool { return a < b; };
+  PriorityQueue<int, decltype(f)> pq1(f);
   EXPECT_TRUE(pq.empty());
   EXPECT_EQ(0, pq.size());
 }
