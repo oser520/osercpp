@@ -203,7 +203,8 @@ PriorityQueue()
 
 /**
  * @brief Constructor with one parameter.
- * @param size The starting size of the heap.
+ * @param size The starting capacity of the heap.
+ * @throw May throw memory allocatoin failure.
  */
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
@@ -220,6 +221,7 @@ PriorityQueue(const size_t size)
 /**
  * @brief Constructor with one parameter.
  * @param alloc The allocator for the heap.
+ * @throw May throw memory allocatoin failure.
  */
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
@@ -236,6 +238,7 @@ PriorityQueue(const allocator_type& alloc)
 /**
  * @brief Constructor with one parameter.
  * @param comp The object used to compare items.
+ * @throw May throw memory allocatoin failure.
  */
 template<typename T, typename Compare, typename  Alloc>
 PriorityQueue<T, Compare, Alloc>::
@@ -267,7 +270,12 @@ PriorityQueue
 }
 #endif
 
-// ctor
+/**
+ * @brief Iterator range constructor.
+ * @param first The iterator to the beginning of the range.
+ * @param last One past the last iterator.
+ * @throw May throw memory allocatoin failure.
+ */
 template<typename T, typename Compare, typename Alloc>
   template<typename InputIterator, typename>
 PriorityQueue<T, Compare, Alloc>::
@@ -288,8 +296,7 @@ PriorityQueue(InputIterator first, InputIterator last)
 }
 
 /**
- * dtor
- * Relinquish the resources used for the queue.
+ * @brief Destructor.
  */
 template<typename T, typename Compare, typename Alloc>
 PriorityQueue<T, Compare, Alloc>::
