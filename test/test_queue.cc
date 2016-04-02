@@ -200,24 +200,8 @@ TEST(PriorityQueue9, topAndPop)
   EXPECT_EQ(6, gpq.top());
 }
 
-// Test capacity
-TEST(PriorityQueue10, capacity)
-{
-  PriorityQueue<int> pq;
-
-  EXPECT_EQ(8, pq.capacity());
-
-  for (int i = 0; i < 8; ++i)
-    pq.push(i);
-
-  EXPECT_EQ(8, pq.capacity());
-
-  pq.push(2);
-  EXPECT_EQ(16, pq.capacity());
-}
-
 // Test top and pop with random numbers
-TEST(PriorityQueue20, topAndPopRandom)
+TEST(PriorityQueue10, topAndPopRandom)
 {
   auto randInt =
     std::bind(std::uniform_int_distribution<>(), std::default_random_engine(71));
@@ -234,9 +218,25 @@ TEST(PriorityQueue20, topAndPopRandom)
   EXPECT_TRUE(std::equal(ivec.cbegin(), ivec.cend(), orderedIvec.cbegin()));
 }
 
+// Test capacity
+TEST(PriorityQueue11, capacity)
+{
+  PriorityQueue<int> pq;
+
+  EXPECT_EQ(8, pq.capacity());
+
+  for (int i = 0; i < 8; ++i)
+    pq.push(i);
+
+  EXPECT_EQ(8, pq.capacity());
+
+  pq.push(2);
+  EXPECT_EQ(16, pq.capacity());
+}
+
 // Test toString
 // TODO: implement test when priority queue iter is ready
-TEST(PriorityQueue11, DISABLED_toString)
+TEST(PriorityQueue12, DISABLED_toString)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -268,7 +268,7 @@ TEST(PriorityQueue11, DISABLED_toString)
 
 // Test hashCode
 // TODO: implement test
-TEST(PriorityQueue12, DISABLED_hashCode)
+TEST(PriorityQueue13, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
   pq.push(7);
