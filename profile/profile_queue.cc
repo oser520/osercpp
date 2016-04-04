@@ -34,17 +34,26 @@ int main()
 
   // get times for STL's priority queue
   vector<double> stlValues;
-  stlValues.reserve(10000);
+  stlValues.reserve(1000);
 
-  for (int i = 0; i < 10000; ++i)
+  for (int i = 0; i < 1000; ++i)
   {
     priority_queue<int> stlQueue;
     auto t1 = high_resolution_clock::now();
-    for (int j = 0; j < 10000; ++j)
+    for (int j = 0; j < 50000; ++j)
     {
       auto r = uniDist(randEngine);
       stlQueue.push(r);
     }
+
+    vector<double> tmpVec;
+    tmpVec.reserve(50000);
+    for (int j = 0; j < 50000; ++j)
+    {
+      tmpVec.push_back(stlQueue.top());
+      stlQueue.pop();
+    }
+
     auto t2 = high_resolution_clock::now();
     stlValues.push_back(getSeconds(t2, t1));
   }
@@ -54,17 +63,26 @@ int main()
 
   // get times for my implementation
   vector<double> osppValues;
-  osppValues.reserve(10000);
+  osppValues.reserve(1000);
 
-  for (int i = 0; i < 10000; ++i)
+  for (int i = 0; i < 1000; ++i)
   {
     priority_queue<int> osppQueue;
     auto t1 = high_resolution_clock::now();
-    for (int j = 0; j < 10000; ++j)
+    for (int j = 0; j < 50000; ++j)
     {
       auto r = uniDist(randEngine);
       osppQueue.push(r);
     }
+
+    vector<double> tmpVec;
+    tmpVec.reserve(50000);
+    for (int j = 0; j < 50000; ++j)
+    {
+      tmpVec.push_back(osppQueue.top());
+      osppQueue.pop();
+    }
+
     auto t2 = high_resolution_clock::now();
     osppValues.push_back(getSeconds(t2, t1));
   }
@@ -84,7 +102,7 @@ int main()
   cout << "max:  " << (*stlMinMax.second) << endl;
   cout << "mean: " << stlMean << endl;
 
-  // output for STL
+  // output for OSPP
   cout << "--------- OSPP" << endl;
   cout << "min:  " << (*osppMinMax.first) << endl;
   cout << "max:  " << (*osppMinMax.second) << endl;
