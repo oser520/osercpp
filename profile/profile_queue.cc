@@ -42,8 +42,8 @@ int main()
     auto t1 = high_resolution_clock::now();
     for (int j = 0; j < 10000; ++j)
     {
-      auto r = unitDist(randEngine);
-      stlQueue.push_back(r);
+      auto r = uniDist(randEngine);
+      stlQueue.push(r);
     }
     auto t2 = high_resolution_clock::now();
     stlValues.push_back(getSeconds(t2, t1));
@@ -62,8 +62,8 @@ int main()
     auto t1 = high_resolution_clock::now();
     for (int j = 0; j < 10000; ++j)
     {
-      auto r = unitDist(randEngine);
-      osppQueue.push_back(r);
+      auto r = uniDist(randEngine);
+      osppQueue.push(r);
     }
     auto t2 = high_resolution_clock::now();
     osppValues.push_back(getSeconds(t2, t1));
@@ -71,23 +71,23 @@ int main()
 
   // compute min, max, and mean for STL
   auto stlMinMax = minmax_element(stlValues.begin(), stlValues.end());
-  auto stlMean = accumulate(stlValues.begin(), stlValues.end()) / stlValues.size();
+  auto stlMean = accumulate(stlValues.begin(), stlValues.end(), 0.0) / stlValues.size();
 
   // compute min, max, and mean for OSPP
   auto osppMinMax = minmax_element(osppValues.begin(), osppValues.end());
   auto osppMean =
-    accumulate(osppValues.begin(), osppValues.end()) / osppValues.size();
+    accumulate(osppValues.begin(), osppValues.end(), 0.0) / osppValues.size();
 
   // output for STL
   cout << "--------- STL" << endl;
-  cout << "min:  " << (*stlMin.first) << endl;
-  cout << "max:  " << (*stlMin.second) << endl;
+  cout << "min:  " << (*stlMinMax.first) << endl;
+  cout << "max:  " << (*stlMinMax.second) << endl;
   cout << "mean: " << stlMean << endl;
 
   // output for STL
   cout << "--------- OSPP" << endl;
-  cout << "min:  " << (*osppMin.first) << endl;
-  cout << "max:  " << (*osppMin.second) << endl;
+  cout << "min:  " << (*osppMinMax.first) << endl;
+  cout << "max:  " << (*osppMinMax.second) << endl;
   cout << "mean: " << osppMean << endl;
 
   return EXIT_SUCCESS;
