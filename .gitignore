@@ -11,3 +11,6 @@ test_queue
 main
 main.cc
 makedbg
+
+# Ignore my own profiling builds
+profile/build/*
