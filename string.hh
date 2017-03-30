@@ -46,7 +46,7 @@ arePermutations(
   }
 
   for (auto values : charMap) {
-    if (not values.second)
+    if (values.second)
       return false;
   }
 
