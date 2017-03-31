@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <bitset>
 #include <limits>
 #include <string>
@@ -18,7 +19,7 @@ bool
 hasUniqueCharacters(const std::basic_string<TChar> &value)
 {
   std::bitset<std::numeric_limits<TChar>::max()> charSet;
-  for (const auto c : value) {
+  for (auto c : value) {
     if (charSet.test(value))
       return false;
     charSet.set(value);
@@ -51,6 +52,29 @@ arePermutations(
   }
 
   return true;
+}
+
+void
+encodeSpaces(std::string &value)
+{
+  constexpr auto space = ' ';
+  auto numSpaces = std::count(value.cbegin(), value.cend(), space);
+  if (not numSpaces)
+    return;
+  auto sizeAdjust = numSpaces * 2;
+  value.resize(value.size() + sizeAdjust);
+  auto from = value.end()-1;
+  auto to = from + sizeAdjust;
+  while (to != from) {
+    if (*from != space)
+      *to-- = *from;
+    else {
+      *to-- = '0';
+      *to-- = '2';
+      *to-- = '%';
+    }
+    --from;
+  }
 }
 
 } // namespace ospp
