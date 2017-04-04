@@ -48,3 +48,16 @@ removeDuplicates(Node<T> *node)
     node = node->next;
   }
 }
+
+
+template<typename T>
+unsigned
+length(Node<T> *node) noexcept
+{
+  auto len = 0u;
+  while (node) {
+    ++len;
+    node = node->next;
+  }
+  return len;
+}
