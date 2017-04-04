@@ -26,7 +26,7 @@ Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
 
 template<typename T>
 void
-removeDuplicates(Node<T> *node) noexcept
+removeDuplicates(Node<T> *node)
 {
   std::set<T> found;
   auto prev = node;
