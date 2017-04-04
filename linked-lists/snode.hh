@@ -2,6 +2,7 @@
 
 #include <type_traits>
 
+
 template<typename T>
 struct Node {
   T data{};
@@ -13,16 +14,19 @@ struct Node {
   Node() noexcept(std::is_nothrow_constructible<T>::value) = default;
 };
 
+
 template<T>
 Node<T>::Node(T &data, Node<T> *next)
   noexcept(std::is_nothrow_copy_constructible<T>::value)
   : data{data}, next{next}
 {}
 
+
 template<T>
 Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
   : data{data}
 {}
+
 
 template<typename T>
 void
