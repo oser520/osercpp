@@ -81,3 +81,21 @@ getKthFromLast(Node<TData> *node, unsigned k)
   }
   return node->data;
 }
+
+template<typename TData>
+void
+removeNode(Node<TData> *node)
+{
+  if (not node)
+    return;
+
+  if (not node->next) {
+    delete node;
+    return;
+  }
+
+  auto tmp = node->next;
+  node->data = tmp->data;
+  node->next = tmp->next;
+  delete tmp;
+}
