@@ -61,3 +61,23 @@ length(Node<T> *node) noexcept
   }
   return len;
 }
+
+template<typename TData>
+TData
+getKthFromLast(Node<TData> *node, unsigned k)
+{
+  auto leading = node;
+  while (leading and k) {
+    --k;
+    leading = leading->next;
+  }
+
+  if (k)
+    throw std::out_of_range;
+
+  while (leading) {
+    leading = leading->next;
+    node = node->next;
+  }
+  return node->data;
+}
