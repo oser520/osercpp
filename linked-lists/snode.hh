@@ -62,6 +62,7 @@ length(Node<T> *node) noexcept
   return len;
 }
 
+
 template<typename TData>
 TData
 getKthFromLast(Node<TData> *node, unsigned k)
@@ -81,6 +82,7 @@ getKthFromLast(Node<TData> *node, unsigned k)
   }
   return node->data;
 }
+
 
 template<typename TData>
 void
