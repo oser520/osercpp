@@ -56,4 +56,20 @@ TEST(TestString, EncodeSpacesShouldEncodeSpaceCorrectly)
   EXPECT_EQ("hello%20there", value);
 }
 
+
+TEST(TestString, EncodeSpacesShouldNotDoAnythingIfNoSpaces)
+{
+  std::string value{"omar"};
+  encodeSpaces(value);
+  EXPECT_EQ("omar", value);
+}
+
+
+TEST(TestString, EncodeSpacesShouldEncodeMultipleSpacesCorrectly)
+{
+  std::string value{"1 22 333 let's sing"};
+  encodeSpaces(value);
+  EXPECT_EQ("1%2022%20333%20let's%20sing", value);
+}
+
 } // anonymous namespace
