@@ -9,7 +9,7 @@
 #include <random>
 
 #include "gtest/gtest.h"
-#include "queue.hh"
+#include "queue/queue.hh"
 
 namespace {
 
