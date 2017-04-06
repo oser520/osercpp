@@ -61,10 +61,11 @@ encodeSpaces(std::string &value)
   auto numSpaces = std::count(value.cbegin(), value.cend(), space);
   if (not numSpaces)
     return;
-  auto sizeAdjust = numSpaces*2 + 1;
-  value.resize(value.size() + sizeAdjust);
-  auto from = value.end()-1;
-  auto to = from + sizeAdjust;
+  auto oldSize = value.size();
+  auto sizeAdjust = numSpaces*2;
+  value.resize(oldSize + sizeAdjust);
+  auto from = value.begin() + oldSize;
+  auto to = value.end() - 1;
   *to-- = '\0';
   while (to != from) {
     if (*from != space)
