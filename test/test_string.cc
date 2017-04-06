@@ -14,25 +14,24 @@ namespace {
 
 
 using namespace ospp;
-using hasUniqueChar = hasUniqueCharacters<char>;
 
 
 TEST(TestString, HasUniqueCharactersShouldReturnTrueIfCharactersAreUnique)
 {
-  EXPECT_TRUE(hasUniqueChar("01abcz"));
+  EXPECT_TRUE(hasUniqueCharacters<char>("01abcz"));
 }
 
 
 TEST(TestString, HasUniqueCharactersShouldReturnTrueIfOnlyOneChar)
 {
-  EXPECT_TRUE(hasUniqueChar("1"));
+  EXPECT_TRUE(hasUniqueCharacters<char>("1"));
 }
 
 
 TEST(TestString, HasUniqueCharactersShouldReturnFalseIfNotUnique)
 {
-  EXPECT_FALSE(hasUniqueChar("00"));
-  EXPECT_FALSE(hasUniqueChar("1abcda"));
+  EXPECT_FALSE(hasUniqueCharacters<char>("00"));
+  EXPECT_FALSE(hasUniqueCharacters<char>("1abcda"));
 }
 
 } // anonymous namespace

@@ -20,9 +20,9 @@ hasUniqueCharacters(const std::basic_string<TChar> &value)
 {
   std::bitset<std::numeric_limits<TChar>::max()> charSet;
   for (auto c : value) {
-    if (charSet.test(value))
+    if (charSet.test(c))
       return false;
-    charSet.set(value);
+    charSet.set(c);
   }
   return true;
 }
