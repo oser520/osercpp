@@ -48,4 +48,12 @@ TEST(TestString, ArePermuationsShouldReturnFalse)
   EXPECT_FALSE(arePermutations<char>("omarsrrano", "resoranmaro"));
 }
 
+
+TEST(TestString, EncodeSpacesShouldEncodeSpaceCorrectly)
+{
+  std::string value{"hello there"};
+  encodeSpaces(value);
+  EXPECT_EQ("hello%20there", value);
+}
+
 } // anonymous namespace

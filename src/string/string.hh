@@ -64,9 +64,8 @@ encodeSpaces(std::string &value)
   auto oldSize = value.size();
   auto sizeAdjust = numSpaces*2;
   value.resize(oldSize + sizeAdjust);
-  auto from = value.begin() + oldSize;
+  auto from = value.begin() + oldSize - 1;
   auto to = value.end() - 1;
-  *to-- = '\0';
   while (to != from) {
     if (*from != space)
       *to-- = *from;
