@@ -34,4 +34,18 @@ TEST(TestString, HasUniqueCharactersShouldReturnFalseIfNotUnique)
   EXPECT_FALSE(hasUniqueCharacters<char>("1abcda"));
 }
 
+
+TEST(TestString, ArePermuationsShouldReturnTrue)
+{
+  EXPECT_TRUE(arePermutations<char>("12345", "35214"));
+  EXPECT_TRUE(arePermutations<char>("omarserrano", "resoranmaro"));
+}
+
+
+TEST(TestString, ArePermuationsShouldReturnFalse)
+{
+  EXPECT_FALSE(arePermutations<char>("123457", "35214"));
+  EXPECT_FALSE(arePermutations<char>("omarsrrano", "resoranmaro"));
+}
+
 } // anonymous namespace
