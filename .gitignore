@@ -14,3 +14,6 @@ makedbg
 
 # Ignore my own profiling builds
 profile/build/*
+
+# Ignore build directory
+build/*
