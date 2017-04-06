@@ -11,13 +11,14 @@
 #include "gtest/gtest.h"
 #include "queue/queue.hh"
 
+
 namespace {
+
 
 using ospp::PriorityQueue;
 
 
-// Test PriorityQueue default ctor
-TEST(TestPriorityQueue, DefaultCtors)
+TEST(TestPriorityQueue, DefaultCtorShouldYieldEmptyQueue)
 {
   PriorityQueue<int> pq;
   EXPECT_TRUE(pq.empty());
@@ -25,8 +26,7 @@ TEST(TestPriorityQueue, DefaultCtors)
 }
 
 
-// Test PriorityQueue constructor with size parameter
-TEST(TestPriorityQueue, sizeParamCtor)
+TEST(TestPriorityQueue, CtorWithCapacityShouldYieldQueueWithCorrectCapacity)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
@@ -34,8 +34,7 @@ TEST(TestPriorityQueue, sizeParamCtor)
 }
 
 
-// Test PriorityQueue constructor different compare type
-TEST(TestPriorityQueue, compTypeParamCtor)
+TEST(TestPriorityQueue, CtorWithCompareTypeShouldWork)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
@@ -48,8 +47,7 @@ TEST(TestPriorityQueue, compTypeParamCtor)
 }
 
 
-// Test PriorityQueue iterator ctor
-TEST(TestPriorityQueue, iterCtor)
+TEST(TestPriorityQueue, CtorWithRangeIteratorsShouldWork)
 {
   std::vector<int> ivec({10, 3, 7, 5, 1});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
@@ -61,8 +59,7 @@ TEST(TestPriorityQueue, iterCtor)
 }
 
 
-// Test push
-TEST(TestPriorityQueue, push)
+TEST(TestPriorityQueue, PushShouldPushCorrectNumberOfEntries)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -81,8 +78,8 @@ TEST(TestPriorityQueue, push)
 }
 
 
-// Test top and pop
-TEST(TestPriorityQueue, topAndPop)
+TEST(TestPriorityQueue,
+     PopShouldPreserverInvariantOfQueueWithDefaultComparator)
 {
   PriorityQueue<int> lpq;
   lpq.push(7);
@@ -110,8 +107,12 @@ TEST(TestPriorityQueue, topAndPop)
   lpq.pop();
   EXPECT_EQ(7, lpq.size());
   EXPECT_EQ(4, lpq.top());
+}
 
-  // Now test with different compare type
+
+TEST(TestPriorityQueue,
+     PopShouldPreserverInvariantOfQueueWithNonDefaultComparator)
+{
   PriorityQueue<int, std::greater<int>> gpq;
   gpq.push(2);
   gpq.push(2);
@@ -136,27 +137,25 @@ TEST(TestPriorityQueue, topAndPop)
 }
 
 
-// Test top and pop with random numbers
-TEST(TestPriorityQueue, topAndPopRandom)
+TEST(TestPriorityQueue, PoppingQueueShouldYieldSortedElements)
 {
-  auto randInt =
-    std::bind(std::uniform_int_distribution<>(), std::default_random_engine(71));
+  auto randInt = std::bind(std::uniform_int_distribution<>(),
+                           std::default_random_engine(71));
   std::vector<int> ivec;
   for (int i = 0; i < 1000; ++i) ivec.push_back(randInt());
 
   PriorityQueue<int> lpq(ivec.cbegin(), ivec.cend());
   std::vector<int> orderedIvec;
-  while (!lpq.empty()) {
+  while (not lpq.empty()) {
     orderedIvec.push_back(lpq.top());
     lpq.pop();
   }
   std::sort(ivec.begin(), ivec.end());
-  EXPECT_TRUE(std::equal(ivec.cbegin(), ivec.cend(), orderedIvec.cbegin()));
+  EXPECT_EQ(ivec, orderedIvec);
 }
 
 
-// Test capacity
-TEST(TestPriorityQueue, capacity)
+TEST(TestPriorityQueue, CapacityShouldDoubleCorrectly)
 {
   PriorityQueue<int> pq;
 
