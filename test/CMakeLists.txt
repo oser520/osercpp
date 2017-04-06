@@ -7,4 +7,7 @@ include_directories(SYSTEM
 link_directories($ENV{GMOCK_LIB_DIR})
 set(test_ospp_src test_queue.cc)
 add_executable(test_ospp ${test_ospp_src})
-target_link_libraries(test_ospp gmock_main)
+target_link_libraries(test_ospp
+  pthread
+  gmock_main
+)

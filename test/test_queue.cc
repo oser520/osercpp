@@ -75,77 +75,6 @@ TEST(PriorityQueue5, push)
   EXPECT_EQ(10, pq.size());
 }
 
-// Test parent
-TEST(PriorityQueue6, parent)
-{
-  PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
-
-  EXPECT_EQ(-1, pq.parent(0));
-  EXPECT_EQ(0, pq.parent(1));
-  EXPECT_EQ(0, pq.parent(2));
-  EXPECT_EQ(1, pq.parent(3));
-  EXPECT_EQ(1, pq.parent(4));
-  EXPECT_EQ(2, pq.parent(5));
-  EXPECT_EQ(2, pq.parent(6));
-  EXPECT_EQ(3, pq.parent(7));
-  EXPECT_EQ(3, pq.parent(8));
-  EXPECT_EQ(4, pq.parent(9));
-}
-
-// Test leftChild
-TEST(PriorityQueue7, leftChild)
-{
-  PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
-
-  EXPECT_EQ(1, pq.leftChild(0));
-  EXPECT_EQ(3, pq.leftChild(1));
-  EXPECT_EQ(5, pq.leftChild(2));
-  EXPECT_EQ(7, pq.leftChild(3));
-  EXPECT_EQ(9, pq.leftChild(4));
-}
-
-// Test rightChild
-TEST(PriorityQueue8, rightChild)
-{
-  PriorityQueue<int> pq;
-  pq.push(7);
-  pq.push(7);
-  pq.push(9);
-  pq.push(8);
-  pq.push(4);
-  pq.push(5);
-  pq.push(6);
-  pq.push(2);
-  pq.push(2);
-  pq.push(1);
-
-  EXPECT_EQ(2, pq.rightChild(0));
-  EXPECT_EQ(4, pq.rightChild(1));
-  EXPECT_EQ(6, pq.rightChild(2));
-  EXPECT_EQ(8, pq.rightChild(3));
-  EXPECT_EQ(10, pq.rightChild(4));
-}
-
 // Test top and pop
 TEST(PriorityQueue9, topAndPop)
 {
@@ -251,9 +180,3 @@ TEST(PriorityQueue13, DISABLED_hashCode)
 }
 
 } // anonymous namespace
-
-int main(int argc, char *argv[])
-{
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}

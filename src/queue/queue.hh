@@ -14,7 +14,7 @@
 #include <utility>
 #include <cassert>
 
-#include "iter_traits.hh"
+#include "traits/iter_traits.hh"
 
 namespace ospp {
 
