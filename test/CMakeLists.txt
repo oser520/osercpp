@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
+include_directories(${ospp_SOURCE_DIR}/src)
 include_directories(SYSTEM
   $ENV{GTEST_INC_DIR}
   $ENV{GMOCK_INC_DIR}
