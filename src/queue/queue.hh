@@ -120,10 +120,7 @@ public:
   template<typename Hash = std::hash<T>>
   size_type hashCode(const Hash& hsh = Hash()) const noexcept;
 
-#ifndef OSPP_TEST_PRIVATE
   private:
-#endif
-
   /**
    * indexing functions
    */
