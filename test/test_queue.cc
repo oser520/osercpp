@@ -15,24 +15,27 @@ namespace {
 
 using ospp::PriorityQueue;
 
+
 // Test PriorityQueue default ctor
-TEST(PriorityQueue1, DefaultCtors)
+TEST(TestPriorityQueue, DefaultCtors)
 {
   PriorityQueue<int> pq;
   EXPECT_TRUE(pq.empty());
   EXPECT_EQ(0, pq.size());
 }
 
+
 // Test PriorityQueue constructor with size parameter
-TEST(PriorityQueue2, sizeParamCtor)
+TEST(TestPriorityQueue, sizeParamCtor)
 {
   PriorityQueue<int> pq(20);
   EXPECT_TRUE(pq.empty());
   EXPECT_EQ(20, pq.capacity());
 }
 
+
 // Test PriorityQueue constructor different compare type
-TEST(PriorityQueue3, compTypeParamCtor)
+TEST(TestPriorityQueue, compTypeParamCtor)
 {
   PriorityQueue<int, std::greater<int>> pq;
   EXPECT_TRUE(pq.empty());
@@ -44,8 +47,9 @@ TEST(PriorityQueue3, compTypeParamCtor)
   EXPECT_EQ(0, pq.size());
 }
 
+
 // Test PriorityQueue iterator ctor
-TEST(PriorityQueue4, iterCtor)
+TEST(TestPriorityQueue, iterCtor)
 {
   std::vector<int> ivec({10, 3, 7, 5, 1});
   PriorityQueue<int> pq(ivec.begin(), ivec.end());
@@ -56,8 +60,9 @@ TEST(PriorityQueue4, iterCtor)
   EXPECT_EQ(4, pq.size());
 }
 
+
 // Test push
-TEST(PriorityQueue5, push)
+TEST(TestPriorityQueue, push)
 {
   PriorityQueue<int> pq;
   pq.push(7);
@@ -75,8 +80,9 @@ TEST(PriorityQueue5, push)
   EXPECT_EQ(10, pq.size());
 }
 
+
 // Test top and pop
-TEST(PriorityQueue9, topAndPop)
+TEST(TestPriorityQueue, topAndPop)
 {
   PriorityQueue<int> lpq;
   lpq.push(7);
@@ -129,8 +135,9 @@ TEST(PriorityQueue9, topAndPop)
   EXPECT_EQ(6, gpq.top());
 }
 
+
 // Test top and pop with random numbers
-TEST(PriorityQueue10, topAndPopRandom)
+TEST(TestPriorityQueue, topAndPopRandom)
 {
   auto randInt =
     std::bind(std::uniform_int_distribution<>(), std::default_random_engine(71));
@@ -147,8 +154,9 @@ TEST(PriorityQueue10, topAndPopRandom)
   EXPECT_TRUE(std::equal(ivec.cbegin(), ivec.cend(), orderedIvec.cbegin()));
 }
 
+
 // Test capacity
-TEST(PriorityQueue11, capacity)
+TEST(TestPriorityQueue, capacity)
 {
   PriorityQueue<int> pq;
 
@@ -163,17 +171,19 @@ TEST(PriorityQueue11, capacity)
   EXPECT_EQ(16, pq.capacity());
 }
 
+
 // Test toString
 // TODO: implement test when priority queue iter is ready
-TEST(PriorityQueue12, DISABLED_toString)
+TEST(TestPriorityQueue, DISABLED_toString)
 {
   PriorityQueue<int> pq;
   EXPECT_TRUE(pq.empty());
 }
 
+
 // Test hashCode
 // TODO: implement test
-TEST(PriorityQueue13, DISABLED_hashCode)
+TEST(TestPriorityQueue, DISABLED_hashCode)
 {
   PriorityQueue<int> pq;
   EXPECT_TRUE(pq.empty());
