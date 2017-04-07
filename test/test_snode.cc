@@ -31,4 +31,18 @@ TEST(TestSNode, IntNodeDefaultCtorShouldBeNoExcept)
 }
 
 
+TEST(TestSNode, StringNodeDefaultCtorShouldDefaultInitialize)
+{
+  Node<std::string> stringNode;
+  EXPECT_EQ(std::string{}, stringNode.data);
+  EXPECT_EQ(nullptr, stringNode.next);
+}
+
+
+TEST(TestSNode, StringNodeDefaultCtorShouldBeNoExcept)
+{
+  EXPECT_TRUE(std::is_nothrow_constructible<Node<std::string>>::value);
+}
+
+
 } // anonymous namespace
