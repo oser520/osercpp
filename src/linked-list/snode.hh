@@ -51,36 +51,6 @@ operator<<(std::ostream &os, const Node<TData> &node)
 }
 
 
-template<typename TData>
-std::ostream&
-listToStream(std::ostream &os, Node<TData> *node)
-{
-    os << "(";
-    if (node) {
-      os << node->data;
-      node = node->next;
-    }
-
-    while (node) {
-      os << ", " << node->data;
-      node = node->next;
-    }
-    os << ")";
-
-    return os;
-}
-
-
-template<typename TData>
-std::string
-listToString(Node<TData> *node)
-{
-  std::ostringstream os;
-  listToStream(os, node);
-  return os.str();
-}
-
-
 template<typename T>
 void
 removeDuplicates(Node<T> *node)
@@ -194,6 +164,36 @@ deleteNodeList(Node<TData> *node) noexcept
     node = node->next;
     delete prev;
   }
+}
+
+
+template<typename TData>
+std::ostream&
+listToStream(std::ostream &os, Node<TData> *node)
+{
+    os << "(";
+    if (node) {
+      os << node->data;
+      node = node->next;
+    }
+
+    while (node) {
+      os << ", " << node->data;
+      node = node->next;
+    }
+    os << ")";
+
+    return os;
+}
+
+
+template<typename TData>
+std::string
+listToString(Node<TData> *node)
+{
+  std::ostringstream os;
+  listToStream(os, node);
+  return os.str();
 }
 
 
