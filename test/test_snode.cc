@@ -60,6 +60,7 @@ TEST(TestSNode, CreateNodeListShouldCreateAOneNodeListCorrectly)
   auto nodeList = createNodeList({1});
   EXPECT_EQ(1, nodeList->data);
   EXPECT_EQ(nullptr, nodeList->next);
+  deleteNodeList(nodeList);
 }
 
 
@@ -72,6 +73,7 @@ TEST(TestSNode, CreateNodeListShouldCreateATwoNodeListCorrectly)
   auto node = nodeList->next;
   EXPECT_EQ(2, node->data);
   EXPECT_EQ(nullptr, node->next);
+  deleteNodeList(nodeList);
 }
 
 
@@ -88,6 +90,28 @@ TEST(TestSNode, CreateNodeListShouldCreateAThreeNodeListCorrectly)
   node = node->next;
   EXPECT_EQ(3, node->data);
   EXPECT_EQ(nullptr, node->next);
+
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, ListToStringShouldWorkCorrectlyForOneNode)
+{
+  auto nodeList = createNodeList({1});
+  EXPECT_EQ("(1)", listToString(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, ListToStringShouldWorkCorrectlyForMoreThanOneNode)
+{
+  auto nodeList = createNodeList({1, 2});
+  EXPECT_EQ("(1, 2)", listToString(nodeList));
+  deleteNodeList(nodeList);
+
+  nodeList = createNodeList({1, 2, 3});
+  EXPECT_EQ("(1, 2, 3)", listToString(nodeList));
+  deleteNodeList(nodeList);
 }
 
 
