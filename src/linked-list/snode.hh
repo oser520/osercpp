@@ -109,7 +109,8 @@ removeNode(Node<TData> *node)
 
 
 template<typename TData>
-Node<TData>* createNodeList(std::initializer_list<TData> dataList)
+Node<TData>*
+createNodeList(std::initializer_list<TData> dataList)
 {
   Node<TData> *head{nullptr}, *next{nullptr};
   for (auto data : dataList)
