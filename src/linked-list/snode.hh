@@ -91,7 +91,7 @@ getKthFromLast(Node<TData> *node, unsigned k)
 
 template<typename TData>
 void
-removeNode(Node<TData> *node)
+removeNode(Node<TData> *node) noexcept
 {
   if (not node)
     return;
