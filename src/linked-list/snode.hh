@@ -3,6 +3,8 @@
 #include <initializer_list>
 #include <ostream>
 #include <set>
+#include <string>
+#include <sstream>
 #include <stdexcept>
 #include <type_traits>
 
@@ -60,6 +62,16 @@ listToStream(std::ostream &os, Node<TData> *node)
     os << ")";
 
     return os;
+}
+
+
+template<typename TData>
+std::string
+listToString(Node<TData> *node)
+{
+  std::ostringstream os;
+  listToStream(os, node);
+  return os.str();
 }
 
 
