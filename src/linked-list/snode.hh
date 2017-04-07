@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initializer_list>
 #include <set>
 #include <stdexcept>
 #include <type_traits>
@@ -105,5 +106,32 @@ removeNode(Node<TData> *node)
   node->next = tmp->next;
   delete tmp;
 }
+
+
+template<typename TData>
+Node<TData>* createNodeList(std::initializer_list<TData> dataList)
+{
+  Node<TData> *head{nullptr}, *next{nullptr};
+  for (auto data : dataList)
+  {
+    if (not head) {
+      try {
+        head = new Node<TData>(data);
+        next = head;
+      } catch (...) {
+        // delete node list and re-throw
+      }
+    }
+    else {
+      try {
+        next->next = new Node<TData>(data);
+        next = next->next;
+      } catch (...) {
+        // delete node list and re-throw
+      }
+    }
+  }
+}
+
 
 } // namespace ospp
