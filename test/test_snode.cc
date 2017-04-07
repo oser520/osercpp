@@ -55,4 +55,12 @@ TEST(TestSNode, StringNodeDefaultCtorShouldBeNoExcept)
 }
 
 
+TEST(TestSNode, CreateNodeListShouldCreateAOneNodeListCorrectly)
+{
+  auto nodeList = createNodeList({1});
+  EXPECT_EQ(1, nodeList->data);
+  EXPECT_EQ(nullptr, nodeList->next);
+}
+
+
 } // anonymous namespace

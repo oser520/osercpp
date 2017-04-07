@@ -39,7 +39,7 @@ Node<T>::Node(T &data, Node<T> *next)
 
 template<typename T>
 Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
-  : data{data}
+  : data{data}, next{nullptr}
 {}
 
 
@@ -151,6 +151,7 @@ createNodeList(std::initializer_list<TData> dataList)
       }
     }
   }
+  return head;
 }
 
 
