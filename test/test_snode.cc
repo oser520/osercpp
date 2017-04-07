@@ -63,4 +63,32 @@ TEST(TestSNode, CreateNodeListShouldCreateAOneNodeListCorrectly)
 }
 
 
+TEST(TestSNode, CreateNodeListShouldCreateATwoNodeListCorrectly)
+{
+  auto nodeList = createNodeList({1, 2});
+  EXPECT_EQ(1, nodeList->data);
+  EXPECT_NE(nullptr, nodeList->next);
+
+  auto node = nodeList->next;
+  EXPECT_EQ(2, node->data);
+  EXPECT_EQ(nullptr, node->next);
+}
+
+
+TEST(TestSNode, CreateNodeListShouldCreateAThreeNodeListCorrectly)
+{
+  auto nodeList = createNodeList({1, 2, 3});
+  EXPECT_EQ(1, nodeList->data);
+  EXPECT_NE(nullptr, nodeList->next);
+
+  auto node = nodeList->next;
+  EXPECT_EQ(2, node->data);
+  EXPECT_NE(nullptr, node->next);
+
+  node = node->next;
+  EXPECT_EQ(3, node->data);
+  EXPECT_EQ(nullptr, node->next);
+}
+
+
 } // anonymous namespace
