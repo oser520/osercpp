@@ -5,6 +5,9 @@
 #include <type_traits>
 
 
+namespace ospp {
+
+
 template<typename T>
 struct Node {
   T data{};
@@ -102,3 +105,5 @@ removeNode(Node<TData> *node)
   node->next = tmp->next;
   delete tmp;
 }
+
+} // namespace ospp
