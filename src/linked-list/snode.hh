@@ -43,6 +43,26 @@ operator<<(std::ostream &os, const Node<TData> &node)
 }
 
 
+template<typename TData>
+std::ostream&
+listToStream(std::ostream &os, Node<TData> *node)
+{
+    os << "(";
+    if (node) {
+      os << node->data;
+      node = node->next;
+    }
+
+    while (node) {
+      os << ", " << node->data;
+      node = node->next;
+    }
+    os << ")";
+
+    return os;
+}
+
+
 template<typename T>
 void
 removeDuplicates(Node<T> *node)
