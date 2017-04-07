@@ -120,7 +120,8 @@ createNodeList(std::initializer_list<TData> dataList)
         head = new Node<TData>(data);
         next = head;
       } catch (...) {
-        // delete node list and re-throw
+        deleteNodeList(head);
+        throw;
       }
     }
     else {
@@ -128,7 +129,8 @@ createNodeList(std::initializer_list<TData> dataList)
         next->next = new Node<TData>(data);
         next = next->next;
       } catch (...) {
-        // delete node list and re-throw
+        deleteNodeList(head);
+        throw;
       }
     }
   }
