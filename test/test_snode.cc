@@ -4,6 +4,7 @@
  * @date 2017-04-06
  */
 
+#include <sstream>
 #include <string>
 #include <type_traits>
 
@@ -28,6 +29,15 @@ TEST(TestSNode, IntNodeDefaultCtorShouldDefaultInitialize)
 TEST(TestSNode, IntNodeDefaultCtorShouldBeNoExcept)
 {
   EXPECT_TRUE(std::is_nothrow_constructible<Node<int>>::value);
+}
+
+
+TEST(TestSNode, IntNodeOutputOpSouldWork)
+{
+  Node<int> intNode;
+  std::ostringstream oss;
+  oss << intNode;
+  EXPECT_EQ("Node(data=0, next=0)", oss.str());
 }
 
 
