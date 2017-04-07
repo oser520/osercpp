@@ -134,4 +134,17 @@ Node<TData>* createNodeList(std::initializer_list<TData> dataList)
 }
 
 
+template<typename TData>
+void
+deleteNodeList(Node<TData> *node) noexcept
+{
+  Node<TData> *prev;
+  while (node) {
+    prev = node;
+    node = node->next;
+    delete prev;
+  }
+}
+
+
 } // namespace ospp
