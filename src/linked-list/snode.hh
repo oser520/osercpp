@@ -1,6 +1,7 @@
 #pragma once
 
 #include <initializer_list>
+#include <ostream>
 #include <set>
 #include <stdexcept>
 #include <type_traits>
@@ -32,6 +33,14 @@ template<T>
 Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
   : data{data}
 {}
+
+
+template<typename TData>
+std::ostream&
+operator<<(std::ostream &os, const Node<TData> &node)
+{
+  return os << "Node(data=" << node.data << ", next=" << node.next << ")";
+}
 
 
 template<typename T>
