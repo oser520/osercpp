@@ -24,14 +24,14 @@ struct Node {
 };
 
 
-template<T>
+template<typename T>
 Node<T>::Node(T &data, Node<T> *next)
   noexcept(std::is_nothrow_copy_constructible<T>::value)
   : data{data}, next{next}
 {}
 
 
-template<T>
+template<typename T>
 Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
   : data{data}
 {}
@@ -120,7 +120,7 @@ getKthFromLast(Node<TData> *node, unsigned k)
   }
 
   if (k)
-    throw std::out_of_range;
+    throw std::out_of_range{};
 
   while (leading) {
     leading = leading->next;
