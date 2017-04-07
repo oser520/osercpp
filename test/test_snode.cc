@@ -49,7 +49,7 @@ TEST(TestSNode, StringNodeDefaultCtorShouldDefaultInitialize)
 }
 
 
-TEST(TestSNode, StringNodeDefaultCtorShouldBeNoExcept)
+TEST(TestSNode, StringNodeDefaultCtorShouldBeExcept)
 {
   EXPECT_FALSE(std::is_nothrow_constructible<Node<std::string>>::value);
 }
