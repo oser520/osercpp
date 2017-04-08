@@ -284,4 +284,31 @@ TEST(TestSNode, GetKthFromLastShouldReturnCorrectValue)
 }
 
 
+TEST(TestSNode, RemoveNodeShouldRemoveTheFirstNodeCorrectlyIfListOnlyHasOneNode)
+{
+  auto nodeList = createNodeList({1});
+  removeNode(&nodeList);
+  EXPECT_EQ("()", listToString(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, RemoveNodeShouldRemoveTheFirstNodeCorrectlyIfListHasMoreNodes)
+{
+  auto nodeList = createNodeList({1, 2});
+  removeNode(&nodeList);
+  EXPECT_EQ("(2)", listToString(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, RemoveNodeShouldRemoveANodeCorrectly)
+{
+  auto nodeList = createNodeList({1, 2, 3});
+  removeNode(&nodeList->next);
+  EXPECT_EQ("(1, 3)", listToString(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
