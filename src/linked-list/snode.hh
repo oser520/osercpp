@@ -96,7 +96,7 @@ getKthFromLast(Node<TData> *node, unsigned k)
   }
 
   if (k)
-    throw std::out_of_range{};
+    throw std::out_of_range("node list contains less than k items");
 
   while (leading) {
     leading = leading->next;

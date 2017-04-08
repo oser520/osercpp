@@ -228,4 +228,13 @@ TEST(TestSNode, RemoveDuplicatesShouldRemoveMultipleDuplicateItems)
 }
 
 
+TEST(TestSNode, GetKthFromLastShouldThrowIfKIsOutOfRange)
+{
+  ASSERT_ANY_THROW(getKthFromLast<int>(nullptr, 1));
+  auto nodeList = createNodeList({1, 2, 3});
+  ASSERT_ANY_THROW(getKthFromLast(nodeList, 4));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
