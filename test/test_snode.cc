@@ -204,4 +204,28 @@ TEST(TestSNode, RemoveDuplicatesShouldNotDoAnythingIfItemsAreUnique)
 }
 
 
+TEST(TestSNode, RemoveDuplicatesShouldRemoveASingleDuplicateItem)
+{
+  auto nodeList1 = createNodeList({1, 2, 2, 4});
+  auto nodeList2 = createNodeList({1, 2, 4});
+  removeDuplicates(nodeList1);
+  EXPECT_TRUE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
+TEST(TestSNode, RemoveDuplicatesShouldRemoveMultipleDuplicateItems)
+{
+  auto nodeList1 = createNodeList({9, 1, 2, 1, 8, 2, 2, 4, 5, 6, 9, 8, 1, 4});
+  auto nodeList2 = createNodeList({9, 1, 2, 8, 4, 5, 6});
+  removeDuplicates(nodeList1);
+  EXPECT_TRUE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
 } // anonymous namespace
