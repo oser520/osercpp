@@ -169,6 +169,24 @@ deleteNodeList(Node<TData> *node) noexcept
 
 
 template<typename TData>
+bool
+areListsEqual(Node<TData> *node1, Node<TData> *node2) noexcept
+{
+  while (node1 and node2) {
+    if (node1->data != node2->data)
+      return false;
+    node1 = node1->next;
+    node2 = node2->next;
+  }
+
+  if (node1 or node2)
+    return false;
+
+  return true;
+}
+
+
+template<typename TData>
 std::ostream&
 listToStream(std::ostream &os, Node<TData> *node)
 {
