@@ -115,4 +115,12 @@ TEST(TestSNode, ListToStringShouldWorkCorrectlyForMoreThanOneNode)
 }
 
 
+TEST(TestSNode, LengthShouldReturnCorrectValueForAOneNodeList)
+{
+  auto nodeList = createNodeList({1});
+  EXPECT_EQ(1, length(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
