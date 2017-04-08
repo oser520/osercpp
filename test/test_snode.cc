@@ -230,9 +230,26 @@ TEST(TestSNode, RemoveDuplicatesShouldRemoveMultipleDuplicateItems)
 
 TEST(TestSNode, GetKthFromLastShouldThrowIfKIsOutOfRange)
 {
+  ASSERT_ANY_THROW(getKthFromLast<int>(nullptr, 0));
   ASSERT_ANY_THROW(getKthFromLast<int>(nullptr, 1));
   auto nodeList = createNodeList({1, 2, 3});
   ASSERT_ANY_THROW(getKthFromLast(nodeList, 4));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, GetKthFromLastShouldReturnCorrectValueForKEqualToZero)
+{
+  auto nodeList = createNodeList({9});
+  EXPECT_EQ(9, getKthFromLast(nodeList, 0));
+  deleteNodeList(nodeList);
+
+  nodeList = createNodeList({9, 100});
+  EXPECT_EQ(100, getKthFromLast(nodeList, 0));
+  deleteNodeList(nodeList);
+
+  nodeList = createNodeList({9, 1, 2, 1, 8, 2, 2, 4, 5, 6, 9, 8, 1, 4});
+  EXPECT_EQ(4, getKthFromLast(nodeList, 0));
   deleteNodeList(nodeList);
 }
 
