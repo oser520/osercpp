@@ -115,10 +115,34 @@ TEST(TestSNode, ListToStringShouldWorkCorrectlyForMoreThanOneNode)
 }
 
 
+TEST(TestSNode, LengthShouldReturnCorrectValueForAnEmptyNodeList)
+{
+  auto nodeList = createNodeList<int>({});
+  EXPECT_EQ(0, length(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 TEST(TestSNode, LengthShouldReturnCorrectValueForAOneNodeList)
 {
   auto nodeList = createNodeList({1});
   EXPECT_EQ(1, length(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, LengthShouldReturnCorrectValueForATwoNodeList)
+{
+  auto nodeList = createNodeList({1, 2});
+  EXPECT_EQ(2, length(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, LengthShouldReturnCorrectValueForAThreeNodeList)
+{
+  auto nodeList = createNodeList({1, 2, 3});
+  EXPECT_EQ(3, length(nodeList));
   deleteNodeList(nodeList);
 }
 
