@@ -58,8 +58,8 @@ removeDuplicates(Node<T> *node)
   std::set<T> found;
   auto prev = node;
   while (node) {
-    auto it = found.insert(node->data);
-    if (not it->second) {
+    auto iterBool = found.insert(node->data);
+    if (not iterBool.second) {
       auto tmp = node;
       node = node->next;
       prev->next = node;

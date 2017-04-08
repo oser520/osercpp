@@ -192,4 +192,16 @@ TEST(TestSNode,
 }
 
 
+TEST(TestSNode, RemoveDuplicatesShouldNotDoAnythingIfItemsAreUnique)
+{
+  auto nodeList1 = createNodeList({1, 2, 3, 4});
+  auto nodeList2 = createNodeList({1, 2, 3, 4});
+  removeDuplicates(nodeList1);
+  EXPECT_TRUE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
 } // anonymous namespace
