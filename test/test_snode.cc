@@ -254,4 +254,34 @@ TEST(TestSNode, GetKthFromLastShouldReturnCorrectValueForKEqualToZero)
 }
 
 
+TEST(TestSNode, GetKthFromLastShouldReturnFirstValueForKEqualToLengthMinusOne)
+{
+  auto nodeList = createNodeList({9});
+  auto len = length(nodeList) - 1;
+  EXPECT_EQ(9, getKthFromLast(nodeList, len));
+  deleteNodeList(nodeList);
+
+  nodeList = createNodeList({9, 100});
+  len = length(nodeList) - 1;
+  EXPECT_EQ(9, getKthFromLast(nodeList, len));
+  deleteNodeList(nodeList);
+
+  nodeList = createNodeList({9, 1, 2, 1, 8, 2, 2, 4, 5, 6, 9, 8, 1, 4});
+  len = length(nodeList) - 1;
+  EXPECT_EQ(9, getKthFromLast(nodeList, len));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode, GetKthFromLastShouldReturnCorrectValue)
+{
+  auto nodeList = createNodeList({9, 1, 2, 1, 8, 2, 2, 4, 5, 6, 9, 8, 1, 4});
+  EXPECT_EQ(1, getKthFromLast(nodeList, 1));
+  EXPECT_EQ(8, getKthFromLast(nodeList, 2));
+  EXPECT_EQ(5, getKthFromLast(nodeList, 5));
+  EXPECT_EQ(2, getKthFromLast(nodeList, 8));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
