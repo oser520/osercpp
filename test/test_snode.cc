@@ -147,4 +147,49 @@ TEST(TestSNode, LengthShouldReturnCorrectValueForAThreeNodeList)
 }
 
 
+TEST(TestSNode, AreListsEqualShouldReturnTrueForTwoEmptyLists)
+{
+  EXPECT_TRUE(areListsEqual<int>(nullptr, nullptr));
+}
+
+
+TEST(TestSNode, AreListsEqualShouldReturnCorrectValueWhenListsOnlyHaveOneItem)
+{
+  auto nodeList1 = createNodeList({1});
+  auto nodeList2 = createNodeList({1});
+  EXPECT_TRUE(areListsEqual(nodeList1, nodeList2));
+
+  nodeList1->data = 2;
+  EXPECT_FALSE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
+TEST(TestSNode, AreListsEqualShouldReturnFalseWhenListsHaveDifferentLenghts)
+{
+  auto nodeList1 = createNodeList({1, 2, 3});
+  auto nodeList2 = createNodeList({1, 2, 3, 4});
+  EXPECT_FALSE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
+TEST(TestSNode,
+     AreListsEqualShouldReturnCorrectValueForListsWithMoreThanOneItem)
+{
+  auto nodeList1 = createNodeList({1, 2, 3, 4});
+  EXPECT_TRUE(areListsEqual(nodeList1, nodeList1));
+
+  auto nodeList2 = createNodeList({1, 2, 5, 4});
+  EXPECT_FALSE(areListsEqual(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
 } // anonymous namespace
