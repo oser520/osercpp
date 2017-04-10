@@ -12,33 +12,34 @@
 namespace ospp {
 
 
-template<typename T>
+template<typename TData>
 struct Node {
-  T data;
+  TData data;
   Node *next;
 
-  Node() noexcept(std::is_nothrow_constructible<T>::value);
-  Node(T &data, Node *next)
-  noexcept(std::is_nothrow_copy_constructible<T>::value);
-  Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value);
+  Node() noexcept(std::is_nothrow_constructible<TData>::value);
+  Node(TData &data, Node *next)
+  noexcept(std::is_nothrow_copy_constructible<TData>::value);
+  Node(TData &data) noexcept(std::is_nothrow_copy_constructible<TData>::value);
 };
 
 
-template<typename T>
-Node<T>::Node() noexcept(std::is_nothrow_constructible<T>::value)
+template<typename TData>
+Node<TData>::Node() noexcept(std::is_nothrow_constructible<TData>::value)
   : data{}, next{nullptr}
 {}
 
 
-template<typename T>
-Node<T>::Node(T &data, Node<T> *next)
-  noexcept(std::is_nothrow_copy_constructible<T>::value)
+template<typename TData>
+Node<TData>::Node(TData &data, Node<TData> *next)
+  noexcept(std::is_nothrow_copy_constructible<TData>::value)
   : data{data}, next{next}
 {}
 
 
-template<typename T>
-Node<T>::Node(T &data) noexcept(std::is_nothrow_copy_constructible<T>::value)
+template<typename TData>
+Node<TData>::Node(TData &data)
+  noexcept(std::is_nothrow_copy_constructible<TData>::value)
   : data{data}, next{nullptr}
 {}
 
@@ -51,11 +52,11 @@ operator<<(std::ostream &os, const Node<TData> &node)
 }
 
 
-template<typename T>
+template<typename TData>
 void
-removeDuplicates(Node<T> *node)
+removeDuplicates(Node<TData> *node)
 {
-  std::set<T> found;
+  std::set<TData> found;
   auto prev = node;
   while (node) {
     auto iterBool = found.insert(node->data);
@@ -72,9 +73,9 @@ removeDuplicates(Node<T> *node)
 }
 
 
-template<typename T>
+template<typename TData>
 unsigned
-length(Node<T> *node) noexcept
+length(Node<TData> *node) noexcept
 {
   auto len = 0u;
   while (node) {
