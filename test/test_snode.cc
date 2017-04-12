@@ -311,4 +311,26 @@ TEST(TestSNode, RemoveNodeShouldRemoveANodeCorrectly)
 }
 
 
+TEST(TestSNode, SumListShouldReturnDefaultCtorValueForEmptyList)
+{
+  Node<int> *intNode = nullptr;
+  EXPECT_EQ(0, sumList(intNode));
+
+  Node<std::string> *strNode = nullptr;
+  EXPECT_EQ(std::string{}, sumList(strNode));
+}
+
+
+TEST(TestSNode, SumListShouldReturnCorrectValueForMultiNodeLists)
+{
+  auto intNodeList = createNodeList({1u, 20u, 33u});
+  EXPECT_EQ(54u, sumList(intNodeList));
+  deleteNodeList(intNodeList);
+
+  auto strNodeList = createNodeList<std::string>({"how", "are", "you"});
+  EXPECT_EQ("howareyou", sumList(strNodeList));
+  deleteNodeList(strNodeList);
+}
+
+
 } // anonymous namespace
