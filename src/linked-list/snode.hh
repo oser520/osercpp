@@ -218,4 +218,17 @@ listToString(Node<TData> *node)
 }
 
 
+template<typename TData>
+TData
+sumList(Node<TData> *node)
+{
+  TData total{};
+  while (node) {
+    total += node->data;
+    node = node->next;
+  }
+  return total;
+}
+
+
 } // namespace ospp
