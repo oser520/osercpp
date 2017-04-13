@@ -231,4 +231,12 @@ sumList(Node<TData> *node)
 }
 
 
+template<typename TData>
+TData
+toNumberFromDigits(Node<TData> *node)
+{
+  throw std::logic_error{};
+}
+
+
 } // namespace ospp
