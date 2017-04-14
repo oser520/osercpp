@@ -348,4 +348,12 @@ TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForSingleNode)
 }
 
 
+TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForMultiNodeList)
+{
+  auto nodeList = createNodeList({5, 7, 9});
+  EXPECT_EQ(975, toNumberFromDigits(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
