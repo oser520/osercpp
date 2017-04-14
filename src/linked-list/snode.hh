@@ -233,13 +233,12 @@ sumList(Node<TData> *node)
 
 
 template<typename TData>
-TData
+typename std::enable_if<std::is_arithmetic<TData>::value, TData>::type
 toNumberFromDigits(Node<TData> *node)
 {
   TData number{};
-  for (auto place = 0; node; ++place, node = node->next) {
+  for (auto place = 0; node; ++place, node = node->next)
     number += node->data * static_cast<TData>(std::pow(10, place));
-  }
   return number;
 }
 
