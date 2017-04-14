@@ -333,6 +333,13 @@ TEST(TestSNode, SumListShouldReturnCorrectValueForMultiNodeLists)
 }
 
 
+TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForNullList)
+{
+  Node<int> *nodeList{nullptr};
+  EXPECT_EQ(0, toNumberFromDigits(nodeList));
+}
+
+
 TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForSingleNode)
 {
   auto nodeList = createNodeList({5});

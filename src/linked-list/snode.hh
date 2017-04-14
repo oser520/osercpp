@@ -236,7 +236,7 @@ template<typename TData>
 TData
 toNumberFromDigits(Node<TData> *node)
 {
-  TData number;
+  TData number{};
   for (auto place = 0; node; ++place, node = node->next) {
     number += node->data * static_cast<TData>(std::pow(10, place));
   }
