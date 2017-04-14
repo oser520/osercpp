@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <initializer_list>
 #include <ostream>
 #include <set>
@@ -235,7 +236,11 @@ template<typename TData>
 TData
 toNumberFromDigits(Node<TData> *node)
 {
-  throw std::logic_error{};
+  TData number;
+  for (auto place = 0; node; ++place, node = node->next) {
+    number += node->data * static_cast<TData>(std::pow(10, place));
+  }
+  return number;
 }
 
 
