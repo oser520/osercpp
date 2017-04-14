@@ -333,4 +333,12 @@ TEST(TestSNode, SumListShouldReturnCorrectValueForMultiNodeLists)
 }
 
 
+TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForSingleNode)
+{
+  auto nodeList = createNodeList({5});
+  EXPECT_EQ(5, toNumberFromDigits(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
