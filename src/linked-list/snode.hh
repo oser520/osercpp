@@ -243,4 +243,12 @@ toNumberFromDigits(Node<TData> *node)
 }
 
 
+template<typename TData>
+TData
+inline sumLists(Node<TData> *lhs, Node<TData> *rhs)
+{
+  return toNumberFromDigits(lhs) + toNumberFromDigits(rhs);
+}
+
+
 } // namespace ospp
