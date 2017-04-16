@@ -356,4 +356,11 @@ TEST(TestSNode, ToNumberFromDigitsShouldReturnCorrectValueForMultiNodeList)
 }
 
 
+TEST(TestSNode, SumListsShouldReturnCorrectValueForEmptyLists)
+{
+  Node<int> *nodeList{nullptr};
+  EXPECT_EQ(0, sumLists(nodeList, nodeList));
+}
+
+
 } // anonymous namespace
