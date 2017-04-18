@@ -244,21 +244,22 @@ toNumberFromDigits(Node<TData> *node)
 
 
 template<typename TData>
-typename std::enable_if<std::is_arithmetic<TData>::value, TData>::type
-toNumberFromDigitsReverse(Node<TData> *node)
-{
-  TData number{};
-  for (auto len = length(node); len; --len, node = node->next)
-    number += node->data * static_cast<TData>(std::pow(10, len));
-  return number;
-}
-
-
-template<typename TData>
 TData
 inline sumLists(Node<TData> *lhs, Node<TData> *rhs)
 {
   return toNumberFromDigits(lhs) + toNumberFromDigits(rhs);
+}
+
+
+template<typename TData>
+typename std::enable_if<std::is_arithmetic<TData>::value, TData>::type
+toNumberFromDigitsReverse(Node<TData> *node)
+{
+  TData number{};
+  auto len = static_cast<int>(length(node)) - 1;
+  for (; len >= 0; --len, node = node->next)
+    number += node->data * static_cast<TData>(std::pow(10, len));
+  return number;
 }
 
 
