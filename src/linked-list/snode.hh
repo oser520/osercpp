@@ -263,4 +263,12 @@ toNumberFromDigitsReverse(Node<TData> *node)
 }
 
 
+template<typename TData>
+TData
+inline sumListsReverse(Node<TData> *lhs, Node<TData> *rhs)
+{
+  return toNumberFromDigitsReverse(lhs) + toNumberFromDigitsReverse(rhs);
+}
+
+
 } // namespace ospp
