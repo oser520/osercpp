@@ -398,4 +398,22 @@ TEST(TestSNode,
 }
 
 
+TEST(TestSNode, SumListsReverseShouldReturnCorrectValueForEmptyLists)
+{
+  EXPECT_EQ(0, sumListsReverse<int>(nullptr, nullptr));
+}
+
+
+TEST(TestSNode, SumListsReverseShouldReturnCorrectValueNonEmptyLists)
+{
+  auto nodeList1 = createNodeList({1, 1, 1});
+  auto nodeList2 = createNodeList({2, 3, 4});
+
+  EXPECT_EQ(345, sumListsReverse(nodeList1, nodeList2));
+
+  deleteNodeList(nodeList1);
+  deleteNodeList(nodeList2);
+}
+
+
 } // anonymous namespace
