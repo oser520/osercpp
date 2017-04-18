@@ -375,4 +375,27 @@ TEST(TestSNode, SumListsShouldReturnCorrectValueNonEmptyLists)
 }
 
 
+TEST(TestSNode, ToNumberFromDigitsReverseShouldReturnCorrectValueForNullList)
+{
+  EXPECT_EQ(0, toNumberFromDigitsReverse<int>(nullptr));
+}
+
+
+TEST(TestSNode, ToNumberFromDigitsReverseShouldReturnCorrectValueForSingleNode)
+{
+  auto nodeList = createNodeList({5});
+  EXPECT_EQ(5, toNumberFromDigitsReverse(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
+TEST(TestSNode,
+     ToNumberFromDigitsReverseShouldReturnCorrectValueForMultiNodeList)
+{
+  auto nodeList = createNodeList({5, 7, 9});
+  EXPECT_EQ(579, toNumberFromDigitsReverse(nodeList));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
