@@ -271,4 +271,21 @@ inline sumListsReverse(Node<TData> *lhs, Node<TData> *rhs)
 }
 
 
+template<typename TData>
+Node<TData>*
+findNode(Node<TData> *nodeList, Node<TData> *node)
+{
+  if (not listNode or not node)
+    return nullptr;
+
+  while (listNode) {
+    if (listNode == node)
+      return node;
+    listNode = listNode->next;
+  }
+
+  return nullptr;
+}
+
+
 } // namespace ospp
