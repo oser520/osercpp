@@ -450,4 +450,12 @@ TEST(TestSNode, FindNodeReturnsNullPointerIfNodeIsNotFound)
 }
 
 
+TEST(TestSNode, FindNodeReturnsTheCorrectPointerIfItFindsTheNode)
+{
+  auto nodeList = createNodeList({0, 1, 2});
+  EXPECT_EQ(nodeList->next->next, findNode(nodeList, nodeList->next->next));
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
