@@ -416,4 +416,15 @@ TEST(TestSNode, SumListsReverseShouldReturnCorrectValueNonEmptyLists)
 }
 
 
+TEST(TestSNode, FindNodeReturnsNullPointerIfNodeListIsNull)
+{
+  Node<int> *nodeList = nullptr;
+  auto node = createNodeList({1});
+
+  EXPECT_EQ(nullptr, findNode(nodeList, node));
+
+  deleteNodeList(node);
+}
+
+
 } // anonymous namespace
