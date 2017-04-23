@@ -275,13 +275,13 @@ template<typename TData>
 Node<TData>*
 findNode(Node<TData> *nodeList, Node<TData> *node)
 {
-  if (not listNode or not node)
+  if (not nodeList or not node)
     return nullptr;
 
-  while (listNode) {
-    if (listNode == node)
+  while (nodeList) {
+    if (nodeList == node)
       return node;
-    listNode = listNode->next;
+    nodeList = nodeList->next;
   }
 
   return nullptr;
