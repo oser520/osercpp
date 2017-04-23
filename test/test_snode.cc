@@ -438,4 +438,16 @@ TEST(TestSNode, FindNodeReturnsNullPointerIfNodeIsNull)
 }
 
 
+TEST(TestSNode, FindNodeReturnsNullPointerIfNodeIsNotFound)
+{
+  auto node = createNodeList({0});
+  auto nodeList = createNodeList({0, 1, 2});
+
+  EXPECT_EQ(nullptr, findNode(nodeList, node));
+
+  deleteNodeList(nodeList);
+  deleteNodeList(node);
+}
+
+
 } // anonymous namespace
