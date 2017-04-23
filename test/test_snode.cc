@@ -427,4 +427,15 @@ TEST(TestSNode, FindNodeReturnsNullPointerIfNodeListIsNull)
 }
 
 
+TEST(TestSNode, FindNodeReturnsNullPointerIfNodeIsNull)
+{
+  Node<int> *node = nullptr;
+  auto nodeList = createNodeList({1});
+
+  EXPECT_EQ(nullptr, findNode(nodeList, node));
+
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
