@@ -288,4 +288,22 @@ findNode(Node<TData> *nodeList, Node<TData> *node)
 }
 
 
+template<typename TData>
+Node<TData>*
+findCommonNode(Node<TData> *leftNodeList, Node<TData> *rightNodeList)
+{
+  if (not leftNodeList or not rightNodeList)
+    return nullptr;
+
+  while (rightNodeList) {
+    auto node = findNode(leftNodeList, rightNodeList);
+    if (node)
+      return node;
+    rightNodeList = rightNodeList->next;
+  }
+
+  return nullptr;
+}
+
+
 } // namespace ospp
