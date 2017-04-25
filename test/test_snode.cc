@@ -458,4 +458,13 @@ TEST(TestSNode, FindNodeReturnsTheCorrectPointerIfItFindsTheNode)
 }
 
 
+TEST(TestSNode, FindCommonNodeReturnsNullIfLeftHandSideIsNull)
+{
+  Node<int> *leftNodeList{nullptr};
+  auto rightNodeList = createNodeList({0, 1, 2});
+  EXPECT_EQ(nullptr, findCommonNode(leftNodeList, rightNodeList));
+  deleteNodeList(rightNodeList);
+}
+
+
 } // anonymous namespace
