@@ -306,4 +306,23 @@ findCommonNode(Node<TData> *leftNodeList, Node<TData> *rightNodeList)
 }
 
 
+template<typename TData>
+Node<TData>*
+detectLoop(Node<TData> *node) noexcept
+{
+  if (not node)
+    return nullptr;
+
+  std::set<decltype(node)> visited;
+  while (node) {
+    auto iter = visited.insert(node);
+    if (iter->second)
+      return node;
+    node = node->next;
+  }
+
+  return nullptr;
+}
+
+
 } // namespace ospp
