@@ -315,8 +315,8 @@ detectLoop(Node<TData> *node) noexcept
 
   std::set<decltype(node)> visited;
   while (node) {
-    auto iter = visited.insert(node);
-    if (iter->second)
+    auto value = visited.insert(node);
+    if (value.second)
       return node;
     node = node->next;
   }

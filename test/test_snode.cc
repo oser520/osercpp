@@ -490,4 +490,10 @@ TEST(TestSNode, FindCommonNodeReturnsCorrectNode)
 }
 
 
+TEST(TestSNode, DetectLoopShouldReturnNullPtrIfNodeIsNull)
+{
+  EXPECT_EQ(nullptr, detectLoop<int>(nullptr));
+}
+
+
 } // anonymous namespace
