@@ -496,4 +496,14 @@ TEST(TestSNode, DetectLoopShouldReturnNullPtrIfNodeIsNull)
 }
 
 
+TEST(TestSNode, DetectLoopShouldDectectALoopCorrectly)
+{
+  auto nodeList = createNodeList({0, 1});
+  nodeList->next->next = nodeList;
+  EXPECT_EQ(nodeList, detectLoop(nodeList));
+  nodeList->next->next = nullptr;
+  deleteNodeList(nodeList);
+}
+
+
 } // anonymous namespace
