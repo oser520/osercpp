@@ -476,4 +476,18 @@ TEST(TestSNode, FindCommonNodeReturnsNullIfRightHandSideIsNull)
 }
 
 
+TEST(TestSNode, FindCommonNodeReturnsCorrectNode)
+{
+  auto leftNodeList = createNodeList({0, 1});
+  auto rightNodeList = createNodeList({3, 5});
+  leftNodeList->next->next = rightNodeList;
+  auto node = findCommonNode(leftNodeList, rightNodeList);
+  EXPECT_EQ(rightNodeList, node);
+  EXPECT_EQ(node->data, 3);
+  leftNodeList->next->next = nullptr;
+  deleteNodeList(leftNodeList);
+  deleteNodeList(rightNodeList);
+}
+
+
 } // anonymous namespace
