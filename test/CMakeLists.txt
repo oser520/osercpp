@@ -6,6 +6,7 @@ include_directories(SYSTEM
 )
 link_directories($ENV{GMOCK_LIB_DIR})
 set(test_ospp_src
+  test_graph_node.cc
   test_queue.cc
   test_snode.cc
   test_string.cc
