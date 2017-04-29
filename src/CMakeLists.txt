@@ -4,4 +4,5 @@ include_directories(
     queue
     string
     traits
+    graph
 )
