@@ -22,4 +22,12 @@ TEST(TestGraphNode, DefaultCtorShouldInitializeIntDataMemberToZero)
 }
 
 
+TEST(TestGraphNode, InitCtorShouldInitializeIntDataMemberCorrectly)
+{
+  GraphNode<int> intNode{5};
+  EXPECT_EQ(5, intNode.data);
+  EXPECT_EQ(0, intNode.neighbors.size());
+}
+
+
 } // anonymous namespace
