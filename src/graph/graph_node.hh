@@ -1,6 +1,8 @@
 #pragma once
 
+#include <functional>
 #include <list>
+#include <set>
 
 
 namespace ospp {
@@ -8,8 +10,9 @@ namespace ospp {
 
 template<typename TData>
 struct GraphNode {
+  using GraphNodeRef = std::reference_wrapper<GraphNode>;
   TData data{};
-  std::list<GraphNode> neighbors;
+  std::list<GraphNodeRef> neighbors;
 
   GraphNode() = default;
   GraphNode(const TData &data);
