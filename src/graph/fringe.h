@@ -2,6 +2,8 @@
 
 
 #include <algorithm>
+#include <queue>
+#include <stack>
 #include <type_traits>
 #include <utility>
 
@@ -23,49 +25,43 @@ public:
 };
 
 
-template<typename T>
-class Fringe<T, std::queue>
-{
-  std::queue<T> fringe;
-
-public:
-  bool empty() const noexcept;
-  bool contains(const T &t) const noexcept;
-  void push(const T &t);
-  void push(T &&t);
-  T next() const noexcept(std::is_nothrow_copy_constructible<T>::value);
-  void pop() noexcept(std::is_nothrow_destructible<T>::value);
-};
-
-
-template<typename T>
+template<typename T, typename TContainer>
 bool
-Fringe<T, std::queue>::empty() const noexcept
+Fringe<T, TContainer>::empty() const noexcept
 {
   return fringe.empty();
 }
 
 
-template<typename T>
+template<typename T, typename TContainer>
 bool
-Fringe<T, std::queue>::contains(const T &t) const noexcept
+Fringe<T, TContainer>::contains(const T &t) const noexcept
 {
   auto last = fringe.cend();
   return std::find(fringe.cbegin(), last, t) != last;
 }
 
 
-template<typename T>
+template<typename T, typename TContainer>
 void
-Fringe<T, std::queue>::push(const T &t)
+Fringe<T, TContainer>::pop() const
+noexcept(std::is_nothrow_destructible<T>::value)
+{
+  fringe.pop();
+}
+
+
+template<typename T, typename TContainer>
+void
+Fringe<T, TContainer>::push(const T &t)
 {
   fringe.push(t);
 }
 
 
-template<typename T>
+template<typename T, typename TContainer>
 void
-Fringe<T, std::queue>::push(T &&t)
+Fringe<T, TContainerstd>::push(T &&t)
 {
   fringe.push(std::move(t));
 }
@@ -81,11 +77,11 @@ noexcept(std::is_nothrow_copy_constructible<T>::value)
 
 
 template<typename T>
-void
-Fringe<T, std::queue>::pop() const
-noexcept(std::is_nothrow_destructible<T>::value)
+T
+Fringe<T, std::stack>::next() const
+noexcept(std::is_nothrow_copy_constructible<T>::value)
 {
-  fringe.pop();
+  return fringe.top();
 }
 
 
