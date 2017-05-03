@@ -35,6 +35,7 @@ pathExists(GraphNode<TData> start, GraphNode<TData> goal)
   fringe.push(start);
   while (not fringe.empty()) {
     auto& node = fringe.next();
+    fringe.pop();
     if (node.data == goal.data)
       return true;
     visited.insert(node);
