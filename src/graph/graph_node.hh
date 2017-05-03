@@ -25,7 +25,7 @@ GraphNode<TData>::GraphNode(const TData &data)
 {}
 
 
-template<typename TData, typename TFringe>
+template<typename TFringe, typename TData>
 bool
 pathExists(GraphNode<TData> start, GraphNode<TData> goal)
 {
