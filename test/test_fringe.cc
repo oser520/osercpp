@@ -20,8 +20,7 @@ namespace {
 
 struct TestFringe : ::testing::Test
 {
-  Fringe<int, std::queue> qFringe;
-  Fringe<int, std::stack> sFringe;
+  Fringe<int> qFringe;
   std::vector<int> data{0, 1, 2, 3, 4, 5};
 };
 
@@ -29,7 +28,6 @@ struct TestFringe : ::testing::Test
 TEST_F(TestFringe, EmptyShouldReturnTrueIfFringeIsEmpty)
 {
   EXPECT_TRUE(qFringe.empty());
-  EXPECT_TRUE(sFringe.empty());
 }
 
 

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <queue>
 #include <stack>
+#include <stdexcept>
 #include <type_traits>
 #include <utility>
 
@@ -11,15 +12,16 @@
 namespace ospp {
 
 
-template<typename T, typename TContainer>
+template<typename T, typename TContainer = std::queue<T>>
 class Fringe
 {
-  TContainer<T> fringe;
+  TContainer fringe;
 
 public:
   bool empty() const noexcept;
   bool contains(const T &t) const noexcept;
   void push(const T &t);
+  void push(T &&t);
   T next() const noexcept(std::is_nothrow_copy_constructible<T>::value);
   void pop() noexcept(std::is_nothrow_destructible<T>::value);
 };
@@ -44,7 +46,7 @@ Fringe<T, TContainer>::contains(const T &t) const noexcept
 
 template<typename T, typename TContainer>
 void
-Fringe<T, TContainer>::pop() const
+Fringe<T, TContainer>::pop()
 noexcept(std::is_nothrow_destructible<T>::value)
 {
   fringe.pop();
@@ -61,27 +63,18 @@ Fringe<T, TContainer>::push(const T &t)
 
 template<typename T, typename TContainer>
 void
-Fringe<T, TContainerstd>::push(T &&t)
+Fringe<T, TContainer>::push(T &&t)
 {
   fringe.push(std::move(t));
 }
 
 
-template<typename T>
+template<typename T, typename TContainer>
 T
-Fringe<T, std::queue>::next() const
+Fringe<T, TContainer>::next() const
 noexcept(std::is_nothrow_copy_constructible<T>::value)
 {
   return fringe.front();
-}
-
-
-template<typename T>
-T
-Fringe<T, std::stack>::next() const
-noexcept(std::is_nothrow_copy_constructible<T>::value)
-{
-  return fringe.top();
 }
 
 
