@@ -21,27 +21,31 @@ namespace {
 struct TestFringe : ::testing::Test
 {
   Fringe<int> qFringe;
-  std::vector<int> data{0, 1, 2, 3, 4, 5};
+
+  void SetUp() override
+  {
+    qFringe.push(1);
+    qFringe.push(2);
+    qFringe.push(3);
+    qFringe.push(4);
+  }
 };
 
 
 TEST_F(TestFringe, EmptyShouldReturnTrueIfFringeIsEmpty)
 {
-  EXPECT_TRUE(qFringe.empty());
+  EXPECT_TRUE(Fringe<int>{}.empty());
 }
 
 
 TEST_F(TestFringe, EmptyShouldReturnFalseIfFringeIsNotEmpty)
 {
-  qFringe.push(1);
   EXPECT_FALSE(qFringe.empty());
 }
 
 
 TEST_F(TestFringe, NextShouldReturnTheNextItem)
 {
-  qFringe.push(1);
-  qFringe.push(2);
   EXPECT_EQ(1, qFringe.next());
 }
 
