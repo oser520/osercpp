@@ -50,4 +50,11 @@ TEST_F(TestFringe, NextShouldReturnTheNextItem)
 }
 
 
+TEST_F(TestFringe, PopShouldRemoveTheCurrentNextItem)
+{
+  qFringe.pop();
+  EXPECT_EQ(2, qFringe.next());
+}
+
+
 } // anonymous namespace
