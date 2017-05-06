@@ -38,4 +38,12 @@ TEST_F(TestFringe, EmptyShouldReturnFalseIfFringeIsNotEmpty)
 }
 
 
+TEST_F(TestFringe, NextShouldReturnTheNextItem)
+{
+  qFringe.push(1);
+  qFringe.push(2);
+  EXPECT_EQ(1, qFringe.next());
+}
+
+
 } // anonymous namespace
