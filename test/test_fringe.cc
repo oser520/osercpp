@@ -57,4 +57,10 @@ TEST_F(TestFringe, PopShouldRemoveTheCurrentNextItem)
 }
 
 
+TEST_F(TestFringe, SizeShouldReturnTheCorrectValue)
+{
+  EXPECT_EQ(4, qFringe.size());
+}
+
+
 } // anonymous namespace

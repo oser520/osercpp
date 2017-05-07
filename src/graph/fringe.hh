@@ -15,6 +15,7 @@ namespace ospp {
 template<typename T, typename TContainer = std::queue<T>>
 class Fringe
 {
+  using size_type = typename TContainer::size_type;
   TContainer fringe;
 
 public:
@@ -24,6 +25,7 @@ public:
   void push(T &&t);
   T next() const noexcept(std::is_nothrow_copy_constructible<T>::value);
   void pop() noexcept(std::is_nothrow_destructible<T>::value);
+  size_type size() const noexcept;
 };
 
 
@@ -75,6 +77,14 @@ Fringe<T, TContainer>::next() const
 noexcept(std::is_nothrow_copy_constructible<T>::value)
 {
   return fringe.front();
+}
+
+
+template<typename T, typename TContainer>
+typename Fringe<T, TContainer>::size_type
+Fringe<T, TContainer>::size() const noexcept
+{
+  return fringe.size();
 }
 
 
