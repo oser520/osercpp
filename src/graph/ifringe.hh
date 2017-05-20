@@ -11,6 +11,8 @@ template<typename T>
 class IFringe
 {
 public:
+  virtual ~IFringe() = default;
+
   virtual bool
   empty() const noexcept;
 
