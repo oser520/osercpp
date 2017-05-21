@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <type_traits>
+#include <utility>
 #include <vector>
 #include "graph/ifringe.hh"
 
@@ -38,6 +39,22 @@ FifoFringe<T>::contains(const T &t) const noexcept override
 {
   auto last = fringe.cend();
   return std::find(fringe.cbegin(), last, t) != last;
+}
+
+
+template<typename T>
+void
+FifoFringe<T>::push(const T &t) override
+{
+  fringe.push_back(t);
+}
+
+
+template<typename T>
+void
+FifoFringe<T>::push(T &&t) override
+{
+  fringe.push_back(std::move(t));
 }
 
 
