@@ -2,9 +2,9 @@
 
 
 #include <algorithm>
+#include <deque>
 #include <type_traits>
 #include <utility>
-#include <vector>
 #include "graph/ifringe.hh"
 
 
@@ -14,7 +14,7 @@ namespace ospp {
 template<typename T>
 class FifoFringe: class IFring<T>
 {
-  std::vector<T> fringe;
+  std::deque<T> fringe;
 public:
   bool empty() const noexcept override;
   bool contains(const T &t) const noexcept override;
