@@ -58,4 +58,13 @@ FifoFringe<T>::push(T &&t) override
 }
 
 
+template<typename T>
+T
+FifoFringe<T>::next() const
+noexcept(std::is_nothrow_copy_constructible<T>::value) override
+{
+  return fringe.front();
+}
+
+
 } // namespace ospp
