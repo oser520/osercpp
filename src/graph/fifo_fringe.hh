@@ -67,4 +67,13 @@ noexcept(std::is_nothrow_copy_constructible<T>::value) override
 }
 
 
+template<typename T>
+void
+FifoFringe<T>::pop()
+noexcept(std::is_nothrow_destructible<T>::value) override
+{
+  fringe.pop_left();
+}
+
+
 } // namespace ospp
