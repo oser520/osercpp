@@ -16,6 +16,7 @@ class FifoFringe: class IFring<T>
 {
   std::deque<T> fringe;
 public:
+  FifoFringe() = default;
   bool empty() const noexcept override;
   bool contains(const T &t) const noexcept override;
   void push(const T &t) override;
