@@ -41,4 +41,13 @@ TEST_F(TestFifoFringe, NextShouldReturnTheNextItem)
 }
 
 
+TEST_F(TestFifoFringe, PopShouldRemoveTheNextItem)
+{
+  intFringe.push(1);
+  intFringe.push(2);
+  intFringe.pop();
+  EXPECT_EQ(2, intFringe.next());
+}
+
+
 } // anonymous namespace
