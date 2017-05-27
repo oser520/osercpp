@@ -11,24 +11,34 @@
 namespace ospp {
 
 
-template<typename T>
-class FifoFringe: class IFring<T>
+template<class T>
+class FifoFringe: public IFringe<T>
 {
   std::deque<T> fringe;
 public:
-  FifoFringe() = default;
-  bool empty() const noexcept override;
-  bool contains(const T &t) const noexcept override;
-  void push(const T &t) override;
-  void push(T &&t) override;
-  T next() const noexcept(std::is_nothrow_copy_constructible<T>::value) override;
-  void pop() noexcept(std::is_nothrow_destructible<T>::value) override;
+  bool
+  empty() const noexcept override;
+
+  bool
+  contains(const T &t) const noexcept override;
+
+  void
+  push(const T &t) override;
+
+  void
+  push(T &&t) override;
+
+  T
+  next() const noexcept(std::is_nothrow_copy_constructible<T>::value) override;
+
+  void
+  pop() noexcept(std::is_nothrow_destructible<T>::value) override;
 };
 
 
 template<typename T>
 bool
-FifoFringe<T>::empty() const noexcept override
+FifoFringe<T>::empty() const noexcept
 {
   return fringe.empty();
 }
@@ -36,7 +46,7 @@ FifoFringe<T>::empty() const noexcept override
 
 template<typename T>
 bool
-FifoFringe<T>::contains(const T &t) const noexcept override
+FifoFringe<T>::contains(const T &t) const noexcept
 {
   auto last = fringe.cend();
   return std::find(fringe.cbegin(), last, t) != last;
@@ -45,7 +55,7 @@ FifoFringe<T>::contains(const T &t) const noexcept override
 
 template<typename T>
 void
-FifoFringe<T>::push(const T &t) override
+FifoFringe<T>::push(const T &t)
 {
   fringe.push_back(t);
 }
@@ -53,7 +63,7 @@ FifoFringe<T>::push(const T &t) override
 
 template<typename T>
 void
-FifoFringe<T>::push(T &&t) override
+FifoFringe<T>::push(T &&t)
 {
   fringe.push_back(std::move(t));
 }
@@ -62,7 +72,7 @@ FifoFringe<T>::push(T &&t) override
 template<typename T>
 T
 FifoFringe<T>::next() const
-noexcept(std::is_nothrow_copy_constructible<T>::value) override
+noexcept(std::is_nothrow_copy_constructible<T>::value)
 {
   return fringe.front();
 }
@@ -71,9 +81,9 @@ noexcept(std::is_nothrow_copy_constructible<T>::value) override
 template<typename T>
 void
 FifoFringe<T>::pop()
-noexcept(std::is_nothrow_destructible<T>::value) override
+noexcept(std::is_nothrow_destructible<T>::value)
 {
-  fringe.pop_left();
+  fringe.pop_front();
 }
 
 

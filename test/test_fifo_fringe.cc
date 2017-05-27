@@ -14,7 +14,7 @@ using namespace ospp;
 namespace {
 
 
-struct TestFringe : ::testing::Test
+struct TestFifoFringe : ::testing::Test
 {
   FifoFringe<int> intFringe;
 };
@@ -26,14 +26,14 @@ TEST_F(TestFifoFringe, EmptyShouldReturnTrueIfFringeIsEmpty)
 }
 
 
-TEST_F(TestFringe, PushingToFringeShouldResultInNonEmptyFringe)
+TEST_F(TestFifoFringe, PushingToFringeShouldResultInNonEmptyFringe)
 {
   intFringe.push(1);
   EXPECT_FALSE(intFringe.empty());
 }
 
 
-TEST_F(TestFringe, NextShouldReturnTheNextItem)
+TEST_F(TestFifoFringe, NextShouldReturnTheNextItem)
 {
   intFringe.push(1);
   intFringe.push(2);
