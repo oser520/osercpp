@@ -83,7 +83,7 @@ void
 LifoFringe<T>::pop()
 noexcept(std::is_nothrow_destructible<T>::value)
 {
-  fringe.pop();
+  fringe.pop_back();
 }
 
 
